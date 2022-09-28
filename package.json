@@ -1,0 +1,25 @@
+{
+  "name": "p7_taylor_heather",
+  "version": "1.0.0",
+  "description": "Les petits plats",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css",
+    "prefix": "",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htaylor91/P7_TAYLOR_Heather.git"
+  },
+  "author": "Heather TAYLOR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/htaylor91/P7_TAYLOR_Heather/issues"
+  },
+  "homepage": "https://github.com/htaylor91/P7_TAYLOR_Heather#readme",
+  "devDependencies": {
+    "eslint": "^8.23.1"
+  }
+}
