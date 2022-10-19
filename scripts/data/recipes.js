@@ -1374,7 +1374,7 @@ const recipes = [
             {
                 "ingredient": "Eau",
                 "quantity": 1,
-                "unit": "Litres"
+                "unit": "litres"
             },
             {
                 "ingredient": "Citron Vert",
@@ -1576,7 +1576,7 @@ const recipes = [
             {
                 "ingredient": "Lait",
                 "quantity": 1,
-                "unit": "litre"
+                "unit": "litres"
             },
             {
                 "ingredient": "Pruneaux",
