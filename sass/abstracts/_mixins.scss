@@ -1,0 +1,21 @@
+@use "../abstracts/functions" as *;
+
+//Breakpoints mixins
+//If an additional breakpoint is needed, 
+//first add the breakpoint to the breakpoints map in the _function.scss file.
+//Then, add a new mixin here, using the new map key.
+
+//Media Queries Level 4 specification adds a range context
+//https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries
+
+@mixin smallScreen {
+    @media screen and (width < map-get($breakpoints, medium)){
+        @content;
+    }
+}
+
+@mixin mediumToLargeScreen { 
+    @media screen and (map-get($breakpoints, medium) <= width < map-get($breakpoints, large)){
+        @content;
+    }
+}
