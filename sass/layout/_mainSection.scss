@@ -1,0 +1,27 @@
+@use "../abstracts" as *;
+
+:where(main) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+:where(form) > fieldset {
+    display: flex;
+    width: 100%;
+}
+
+:where([data-recipes-section]) {  
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 380px);
+    justify-content: space-between;
+    gap: 2rem;
+    @include smallScreen {
+        justify-content: center;
+    }
+    @include mediumToLargeScreen {
+        justify-content: space-evenly;
+    }
+}
