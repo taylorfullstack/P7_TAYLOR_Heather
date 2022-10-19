@@ -104,6 +104,111 @@ body {
   text-overflow: ellipsis;
 }
 
+.dropdownList {
+  display: flex;
+  gap: 1rem;
+}
+@media screen and (width < 873px) {
+  .dropdownList {
+    flex-wrap: wrap;
+  }
+}
+
+.backgroundColor--1 {
+  background-color: #3282F7;
+}
+.backgroundColor--2 {
+  background-color: #68D9A4;
+}
+.backgroundColor--3 {
+  background-color: #ED6454;
+}
+
+.dropdownListItem {
+  display: grid;
+  height: 69px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  align-items: center;
+}
+.dropdownListItem:is(:hover) > label {
+  display: none;
+}
+.dropdownListItem:is(:hover) > input {
+  width: 95%;
+}
+.dropdownListItem:is(:hover) > input::placeholder {
+  opacity: 1;
+}
+.dropdownListItem:is(:hover) > img {
+  transform: rotate(180deg);
+}
+.dropdownListItem:is(:hover) > menu {
+  display: grid;
+}
+.dropdownListItem > :is(input, label, img) {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  font-weight: 700;
+}
+.dropdownListItem > :is(input, label, menu) {
+  font-size: 18px;
+  padding: 19px;
+}
+.dropdownListItem > :is(input, label) {
+  width: 170px;
+  height: inherit;
+}
+.dropdownListItem > input {
+  padding-right: 30px;
+  color: inherit;
+  background-color: transparent;
+}
+.dropdownListItem > input:focus {
+  width: 90%;
+}
+.dropdownListItem > input::placeholder {
+  color: #FFFFFF;
+  opacity: 0;
+}
+.dropdownListItem > input:where(:hover, :focus)::placeholder {
+  opacity: 1;
+}
+.dropdownListItem > input:where(:not(:placeholder-shown)) + label {
+  opacity: 0;
+}
+.dropdownListItem > input:where(:focus) + label {
+  display: none;
+}
+.dropdownListItem > input:where(:focus) ~ menu {
+  display: grid;
+}
+.dropdownListItem > input:where(:focus) ~ img {
+  transform: rotate(180deg);
+}
+.dropdownListItem > label {
+  display: flex;
+}
+.dropdownListItem > label span {
+  justify-self: left;
+  align-self: center;
+}
+.dropdownListItem > img {
+  align-self: center;
+  justify-self: end;
+  margin-right: 10px;
+  width: 16px;
+}
+.dropdownListItem > menu {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: inherit;
+  background-color: inherit;
+  border-radius: 0px 0px 5px 5px;
+  transform: translateY(-5px);
+  display: none;
+}
+
 .searchBar > :is(input, button) {
   background-color: #E7E7E7;
   height: 70px;
