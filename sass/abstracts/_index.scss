@@ -1,0 +1,8 @@
+//This index forwards the abstracts files for use throughout the scss files.
+//To use all of the abstract files in a scss file, type
+//    @use "../abstracts" as *;
+//at the top of any new scss file.
+
+@forward "../abstracts/variables";
+@forward "../abstracts/functions";
+@forward "../abstracts/mixins";
