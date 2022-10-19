@@ -197,7 +197,7 @@ const recipes = [
             },
             {
                 "ingredient": "Oeuf",
-                "quantity": "2"
+                "quantity": 2
             },
             {
                 "ingredient":"Crème fraîche",
@@ -241,7 +241,7 @@ const recipes = [
             },
             {
                 "ingredient": "Beurre",
-                "quantity": "30",
+                "quantity": 30,
                 "unit": "g"
             },
             {
@@ -260,7 +260,7 @@ const recipes = [
         "ingredients":[
            {
                 "ingredient": "Noix",
-                "quantity": "180",
+                "quantity": 180,
                 "unit": "g"
            },
            {
@@ -279,7 +279,7 @@ const recipes = [
            },
            {
                "ingredient": "Sucre en Poudre",
-               "quantity": "110",
+               "quantity": 110,
                "unit": "g"
            },
            {
@@ -333,7 +333,7 @@ const recipes = [
         "ingredients":[
             {
                 "ingredient": "Reblochon",
-                "quantity": "1"
+                "quantity": 1
             },
             {
                 "ingredient": "Pommes de terre",
@@ -419,7 +419,7 @@ const recipes = [
             },
             {
                 "ingredient": "Eau",
-                "quantity" : "0.5",
+                "quantity": 0.5,
                 "unit" : "tasses"
             }
         ],
