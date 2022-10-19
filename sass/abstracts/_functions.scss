@@ -1,0 +1,10 @@
+@use "./variables" as *;
+
+// Breakpoints Map - max-width //
+//If an additional breakpoint is needed, add the breakpoint to this map.
+//Then, create a mixin using the new map key in the _mixins.scss file.
+
+$breakpoints: (
+    medium: 873px, //872 and under there is only 1 card - centering needed
+    large: 1285px //1285 and up the cards are 3 in a row
+);
