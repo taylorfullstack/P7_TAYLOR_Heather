@@ -1,3 +1,177 @@
+@charset "UTF-8";
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+  background-color: #FFFFFF;
+}
+
+:where(fieldset, input, button) {
+  border: none;
+  outline: none;
+}
+
+:where(menu, ul) {
+  list-style: none;
+}
+
+[data-recipe-article] {
+  display: flex;
+  flex-direction: column;
+  background-color: #E7E7E7;
+  border-radius: 5px;
+  width: 380px;
+  height: 364px;
+}
+[data-recipe-article] > [data-recipe-image] {
+  background-color: #C7BEBE;
+  border-radius: 5px 5px 0px 0px;
+  height: 178px;
+}
+[data-recipe-article] > [data-recipe-container] {
+  height: 186px;
+  font-size: 12px;
+  padding: 15px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-header] {
+  display: flex;
+  justify-content: flex-end;
+  height: 45px;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-header] [data-recipe-name] {
+  font-weight: 400;
+  font-size: 18px;
+  padding-left: 2px;
+  margin-right: auto;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-header] img {
+  align-self: start;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-header] [data-recipe-time] {
+  font-weight: 700;
+  font-size: 18px;
+  padding: 0px 2px 0px 7px;
+  white-space: nowrap;
+  align-self: start;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] {
+  display: flex;
+  justify-content: space-between;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] {
+  width: 171px;
+  line-height: 14.4px;
+  padding-left: 2px;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-ingredient] {
+  font-weight: 700;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes] {
+  font-weight: 700;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes]::after {
+  content: ":" " ";
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-unit-abbreviated=no]::before {
+  content: " ";
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-description] {
+  font-family: "Roboto", sans-serif;
+  width: 171px;
+  line-height: 12px;
+  -webkit-line-clamp: 6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchBar > :is(input, button) {
+  background-color: #E7E7E7;
+  height: 70px;
+}
+.searchBar > input {
+  border-radius: 5px 0px 0px 5px;
+  font-size: 1.125rem;
+  color: #000000;
+  padding-left: 1.5rem;
+  width: 95%;
+}
+@media screen and (width < 873px) {
+  .searchBar > input {
+    width: 90%;
+  }
+}
+.searchBar > button {
+  border-radius: 0px 5px 5px 0px;
+  width: 5%;
+}
+@media screen and (width < 873px) {
+  .searchBar > button {
+    width: 10%;
+  }
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.h1 {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #D04F4F;
+}
+
+:where(main) {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+:where(form) > fieldset {
+  display: flex;
+  width: 100%;
+}
+
+:where([data-recipes-section]) {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 380px);
+  justify-content: space-between;
+  gap: 2rem;
+}
+@media screen and (width < 873px) {
+  :where([data-recipes-section]) {
+    justify-content: center;
+  }
+}
+@media screen and (873px <= width < 1285px) {
+  :where([data-recipes-section]) {
+    justify-content: space-evenly;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
