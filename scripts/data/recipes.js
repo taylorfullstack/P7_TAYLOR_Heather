@@ -5,22 +5,22 @@ export const recipes = [
         "servings" : 1,
         "ingredients": [
             {
-                "ingredient" : "Lait de coco",
-                "quantity" : 400,
-                "unit" : "ml"
+                "ingredient": "Lait de coco",
+                "quantity": 400,
+                "unit": "ml"
             },
             {
-                "ingredient" : "Jus de citron",
-                "quantity" : 2
+                "ingredient": "Jus de citron",
+                "quantity": 2
             },
             {
-                "ingredient" : "Crème de coco",
-                "quantity" : 2,
+                "ingredient": "Crème de coco",
+                "quantity": 2,
                 "unit": "c.à.s."
             },
             {
-                "ingredient" : "Sucre",
-                "quantity" : 30,
+                "ingredient": "Sucre",
+                "quantity": 30,
                 "unit": "g"
             },
             {
@@ -38,30 +38,30 @@ export const recipes = [
         "servings": 2,
         "ingredients": [
             {
-                "ingredient" : "Thon Rouge (ou blanc)",
-                "quantity" : 200,
+                "ingredient": "Thon Rouge (ou blanc)",
+                "quantity": 200,
                 "unit": "g"
             },
             {
-                "ingredient" : "Concombre",
-                "quantity" : 1
+                "ingredient": "Concombre",
+                "quantity": 1
             },
             {
-                "ingredient" : "Tomate",
-                "quantity" : 2
+                "ingredient": "Tomate",
+                "quantity": 2
             },
             {
-                "ingredient" : "Carotte",
-                "quantity" : 1
+                "ingredient": "Carotte",
+                "quantity": 1
             },
             {
-                "ingredient" : "Citron Vert",
-                "quantity" : 5
+                "ingredient": "Citron Vert",
+                "quantity": 5
             },
             {
-                "ingredient" : "Lait de Coco",
-                "quantity" : 100,
-                "unit" : "ml"
+                "ingredient": "Lait de Coco",
+                "quantity": 100,
+                "unit": "ml"
             }
         ],
         "time": 60,
@@ -75,21 +75,21 @@ export const recipes = [
         "ingredients": [
             {
                 "ingredient": "Poulet",
-                "quantity" : 1          
+                "quantity": 1          
             },
             {
                 "ingredient": "Lait de coco",
-                "quantity" : 400,
-                "unit" : "ml"
+                "quantity": 400,
+                "unit": "ml"
             },
             {
                 "ingredient": "Coulis de tomate",
-                "quantity" : 25,
-                "unit" : "cl"
+                "quantity": 25,
+                "unit": "cl"
             },
             {
                 "ingredient": "Oignon",
-                "quantity" : 1
+                "quantity": 1
             },
             {
                 "ingredient": "Poivron rouge",
@@ -201,7 +201,7 @@ export const recipes = [
             },
             {
                 "ingredient":"Crème fraîche",
-                "quantity":25,
+                "quantity": 25,
                 "unit": "cl"
             },
             {
@@ -420,7 +420,7 @@ export const recipes = [
             {
                 "ingredient": "Eau",
                 "quantity": 0.5,
-                "unit" : "tasses"
+                "unit": "tasses"
             }
         ],
         "time": 40,
@@ -566,7 +566,7 @@ export const recipes = [
             {
                 "ingredient": "Basilic",
                 "quantity": 1,
-                "unit":"tiges"
+                "unit": "tiges"
             },
             {
                 "ingredient": "huile d'olives",
@@ -736,7 +736,7 @@ export const recipes = [
             },
             {
                 "ingredient": "Crème fraîche",
-                "quantity" : 1,
+                "quantity": 1,
                 "unit": "c.à.s."
             }
         ],
@@ -946,7 +946,7 @@ export const recipes = [
             {
                 "ingredient": "Vermicelles",
                 "quantity": 1,
-                "unit":"verres"
+                "unit": "verres"
             },
             {
                 "ingredient": "Beurre salé",
@@ -1248,7 +1248,7 @@ export const recipes = [
             {
                 "ingredient": "Lasagnes",
                 "quantity": 5,
-                "unit":"feuilles"
+                "unit": "feuilles"
             },
             {
                 "ingredient": "Gruyère",
@@ -1314,7 +1314,7 @@ export const recipes = [
             {
                 "ingredient": "Pain",
                 "quantity": 6,
-                "unit":"tranches"
+                "unit": "tranches"
             },
             {
                 "ingredient": "Lait",
@@ -1438,7 +1438,7 @@ export const recipes = [
             {
                 "ingredient": "Poires au jus",
                 "quantity": 0.5,
-                "unit" : "boites"
+                "unit": "boites"
             },
             {
                 "ingredient": "Boudoirs",
@@ -1612,7 +1612,7 @@ export const recipes = [
             {
                 "ingredient": "Crème Fraîche",
                 "quantity": 20,
-                "unit":"cl"
+                "unit": "cl"
             }
         ],
         "time": 5,
@@ -1642,7 +1642,7 @@ export const recipes = [
             {
                 "ingredient": "Champignons de paris",
                 "quantity": 1,
-                "unit":"boites"
+                "unit": "boites"
             },
             {
                 "ingredient": "Gruyère",
@@ -1675,7 +1675,7 @@ export const recipes = [
             {
                 "ingredient": "Ananas",
                 "quantity": 4,
-                "unit":"tranches"
+                "unit": "tranches"
             },
             {
                 "ingredient": "Miel",
