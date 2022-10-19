@@ -1,0 +1,103 @@
+@use "../abstracts" as *;
+
+.dropdownList {
+    display: flex;
+    gap: 1rem;
+    @include smallScreen {
+        flex-wrap: wrap;
+    }
+}
+
+.backgroundColor {
+    &--1 {background-color: $color-1;}
+    &--2 {background-color: $color-2;}
+    &--3 {background-color: $color-3;}
+}
+
+.dropdownListItem {
+    display: grid;
+    height: 69px;
+    border-radius: 5px;
+    color: $color-text-white;
+    align-items: center;
+    //Hover over dropdown li//
+    &:is(:hover) > label {
+        display: none;
+    }
+    &:is(:hover) > input {
+        width: 95%;
+        &::placeholder {
+            opacity: 1;
+        }
+    }
+    &:is(:hover) > img {
+        transform: rotate(180deg);
+    }
+    &:is(:hover) > menu {
+        display: grid;
+    }
+    //Specific children of dropdown//
+    & > :is(input, label, img) {
+        grid-column: 1 / -1 ;
+        grid-row: 1 / -1 ;
+        font-weight: 700;
+    }
+    & > :is(input, label, menu) {
+        font-size: 18px;
+        padding: 19px;
+    }
+    & > :is(input, label) {
+        width: 170px;
+        height: inherit;
+    }
+    //Children of dropdown//
+    & > input {
+        padding-right: 30px;
+        color: inherit;
+        background-color: transparent;
+        &:focus {
+            width: 90%;
+        }
+        &::placeholder {
+            color: $color-text-white;
+            opacity: 0;
+        }
+        &:where(:hover, :focus)::placeholder{
+            opacity: 1;
+        }
+        &:where(:not(:placeholder-shown)) + label {
+            opacity: 0;
+        }
+        &:where(:focus) + label {
+            display: none;
+        }
+        &:where(:focus) ~ menu {
+            display: grid;
+        }
+        &:where(:focus) ~ img {
+            transform: rotate(180deg);
+        }
+    }
+    & > label {
+        display: flex;
+        & span {
+            justify-self: left;
+            align-self: center;
+        }
+    }
+    & > img {
+        align-self: center;
+        justify-self: end;
+        margin-right: 10px;
+        width: 16px;
+    }
+    & > menu {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        width: inherit;
+        background-color: inherit;
+        border-radius: 0px 0px 5px 5px;
+        transform: translateY(-5px);
+        display: none;
+    }
+}
