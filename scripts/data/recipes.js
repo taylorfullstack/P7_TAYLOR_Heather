@@ -16,7 +16,7 @@ const recipes = [
             {
                 "ingredient" : "Crème de coco",
                 "quantity" : 2,
-                "unit" : "cuillères à soupe"
+                "unit": "c.à.s."
             },
             {
                 "ingredient" : "Sucre",
@@ -98,7 +98,7 @@ const recipes = [
             {
                 "ingredient": "Huile d'olive",
                 "quantity": 1,
-               "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 80,
@@ -164,7 +164,7 @@ const recipes = [
            {
                "ingredient": "Crème fraîche",
                "quantity": 2,
-               "unit": "cuillères à soupe"
+               "unit": "c.à.s."
            },
            {
                "ingredient": "gruyère râpé",
@@ -174,7 +174,7 @@ const recipes = [
            {
                 "ingredient": "Moutarde de Dijon",
                 "quantity": 1,
-                "unite": "cuillères à soupe"
+                "unit": "c.à.s."
            }
         ],
         "time": 45,
@@ -451,12 +451,12 @@ const recipes = [
             {
                 "ingredient": "Vinaigre de cidre",
                 "quantity": 1,
-                "unit":"cuillère à soupe"
+                "unit": "c.à.s."
             },
             {
                 "ingredient": "huile d'olive",
                 "quantity": 2,
-                "unit": "cuillère à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time":40,
@@ -571,7 +571,7 @@ const recipes = [
             {
                 "ingredient": "huile d'olives",
                 "quantity": 2,
-                "unit": "cuillère à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 45,
@@ -596,7 +596,7 @@ const recipes = [
             {
                 "ingredient": "Jus de citron",
                 "quantity": 1,
-                "unit":"cuillères à soupe"
+                "unit": "c.à.s."
             },
             {
                 "ingredient": "Glaçons",
@@ -697,7 +697,7 @@ const recipes = [
             {
                 "ingredient": "huile d'olive",
                 "quantity": 1,
-                "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 30,
@@ -737,7 +737,7 @@ const recipes = [
             {
                 "ingredient": "Crème fraîche",
                 "quantity" : 1,
-                "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 30,
@@ -851,7 +851,7 @@ const recipes = [
             {
                 "ingredient": "Mayonnaise",
                 "quantity": 2,
-                "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 40,
@@ -941,7 +941,7 @@ const recipes = [
             {
                 "ingredient": "Crème fraîche",
                 "quantity": 4,
-                "unit": "cuillère à soupe"
+                "unit": "c.à.s."
             },
             {
                 "ingredient": "Vermicelles",
@@ -1147,12 +1147,12 @@ const recipes = [
             {
                 "ingredient": "Fromage blanc",
                 "quantity": 4,
-                "unit":"cuillères à soupe"
+                "unit": "c.à.s."
             },
             {
                 "ingredient": "Jus de citron",
                 "quantity": 1,
-                "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 5,
@@ -1209,12 +1209,12 @@ const recipes = [
             {
                 "ingredient": "Crème fraîche",
                 "quantity": 2,
-                "unit":"cuillères à soupe"
+                "unit": "c.à.s."
             },
             {
                 "ingredient": "Cumin",
                 "quantity": 1,
-                "unit": "cuillères à café"
+                "unit": "c.à.c."
             },
             {
                 "ingredient": "Noix de muscade",
@@ -1258,7 +1258,7 @@ const recipes = [
             {
                 "ingredient": "Maïzena",
                 "quantity": 1,
-                "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 35,
@@ -1383,12 +1383,12 @@ const recipes = [
             {
                 "ingredient": "Sucre en poudre",
                 "quantity": 4,
-                "unit":"cuillères à café"
+                "unit": "c.à.c."
             },
             {
                 "ingredient": "Bicarbonate",
                 "quantity": 1,
-                "unit": "cuillères à café"
+                "unit": "c.à.c."
             }
         ],
         "time": 10,
@@ -1680,7 +1680,7 @@ const recipes = [
             {
                 "ingredient": "Miel",
                 "quantity": 2,
-                "unit": "cuillères à soupe"
+                "unit": "c.à.s."
             }
         ],
         "time": 0,
