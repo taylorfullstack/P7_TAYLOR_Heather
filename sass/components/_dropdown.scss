@@ -3,9 +3,7 @@
 .dropdownList {
     display: flex;
     gap: 1rem;
-    @include smallScreen {
-        flex-wrap: wrap;
-    }
+    flex-wrap: wrap;
 }
 
 .backgroundColor {
@@ -20,22 +18,7 @@
     border-radius: 5px;
     color: $color-text-white;
     align-items: center;
-    //Hover over dropdown li//
-    &:is(:hover) > label {
-        display: none;
-    }
-    &:is(:hover) > input {
-        width: 95%;
-        &::placeholder {
-            opacity: 1;
-        }
-    }
-    &:is(:hover) > img {
-        transform: rotate(180deg);
-    }
-    &:is(:hover) > menu {
-        display: grid;
-    }
+    
     //Specific children of dropdown//
     & > :is(input, label, img) {
         grid-column: 1 / -1 ;
@@ -50,54 +33,93 @@
         width: 170px;
         height: inherit;
     }
+    &:focus-within > label {
+        display: none;
+    }
+    &:focus-within > input {
+        width: 90%;
+    }
+    &:focus-within > img {
+        transform: rotate(180deg);
+    }
+    &:focus-within > menu {
+        display: grid;
+    }
+    &:focus-within > input::placeholder {
+        opacity: 0.8;
+    }
+    
+    &:not(:focus-within) > input::placeholder {
+        opacity: 0;
+    }
     //Children of dropdown//
     & > input {
         padding-right: 30px;
         color: inherit;
         background-color: transparent;
+        z-index: 2;
+        cursor: pointer;
         &:focus {
-            width: 90%;
+            cursor: text;
         }
         &::placeholder {
             color: $color-text-white;
-            opacity: 0;
+            font-weight: 400;
         }
-        &:where(:hover, :focus)::placeholder{
-            opacity: 1;
+        &:where(:focus-within)::placeholder{
+            opacity: 0.8;
         }
         &:where(:not(:placeholder-shown)) + label {
             opacity: 0;
         }
-        &:where(:focus) + label {
+        &:where(:focus-within) + label {
             display: none;
         }
-        &:where(:focus) ~ menu {
+        &:where(:focus-within) ~ menu {
             display: grid;
         }
-        &:where(:focus) ~ img {
+        &:where(:focus-within) ~ img {
             transform: rotate(180deg);
         }
     }
     & > label {
         display: flex;
-        & span {
-            justify-self: left;
-            align-self: center;
-        }
+        justify-content: left;
+        align-items: center;
     }
     & > img {
-        align-self: center;
         justify-self: end;
         margin-right: 10px;
         width: 16px;
+        background-color: transparent;
+        z-index: 1;
+        cursor: pointer;
     }
-    & > menu {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+    & > menu {  
+        grid-template-columns: repeat(3, minmax(max-content, 1fr));
+        gap: 1rem 2rem;
         width: inherit;
         background-color: inherit;
         border-radius: 0px 0px 5px 5px;
         transform: translateY(-5px);
+        z-index: 3;
         display: none;
+        @include smallScreen {
+            grid-template-columns: 1fr;
+        }
+        &:hover {
+            display: grid;
+        }
+        & > li {
+            background-color: inherit;
+            cursor: pointer;
+            &:hover {
+                text-shadow: .03rem .03rem $color-text-white;
+            }
+            &:focus {
+                outline: solid 2px $color-text-white;
+            }
+        }
     }
 }
+
