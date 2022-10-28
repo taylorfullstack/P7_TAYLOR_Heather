@@ -24,6 +24,10 @@ body {
     outline: none;
 }
 
-:where(menu, ul) {
+:is(menu, ul) {
     list-style: none;
+}
+
+.hidden {
+    display: none;
 }
