@@ -26,8 +26,12 @@ body {
   outline: none;
 }
 
-:where(menu, ul) {
+:is(menu, ul) {
   list-style: none;
+}
+
+.hidden {
+  display: none;
 }
 
 [data-recipe-article] {
@@ -107,11 +111,7 @@ body {
 .dropdownList {
   display: flex;
   gap: 1rem;
-}
-@media screen and (width < 873px) {
-  .dropdownList {
-    flex-wrap: wrap;
-  }
+  flex-wrap: wrap;
 }
 
 .backgroundColor--1 {
@@ -131,21 +131,6 @@ body {
   color: #FFFFFF;
   align-items: center;
 }
-.dropdownListItem:is(:hover) > label {
-  display: none;
-}
-.dropdownListItem:is(:hover) > input {
-  width: 95%;
-}
-.dropdownListItem:is(:hover) > input::placeholder {
-  opacity: 1;
-}
-.dropdownListItem:is(:hover) > img {
-  transform: rotate(180deg);
-}
-.dropdownListItem:is(:hover) > menu {
-  display: grid;
-}
 .dropdownListItem > :is(input, label, img) {
   grid-column: 1/-1;
   grid-row: 1/-1;
@@ -159,54 +144,93 @@ body {
   width: 170px;
   height: inherit;
 }
+.dropdownListItem:focus-within > label {
+  display: none;
+}
+.dropdownListItem:focus-within > input {
+  width: 90%;
+}
+.dropdownListItem:focus-within > img {
+  transform: rotate(180deg);
+}
+.dropdownListItem:focus-within > menu {
+  display: grid;
+}
+.dropdownListItem:focus-within > input::placeholder {
+  opacity: 0.8;
+}
+.dropdownListItem:not(:focus-within) > input::placeholder {
+  opacity: 0;
+}
 .dropdownListItem > input {
   padding-right: 30px;
   color: inherit;
   background-color: transparent;
+  z-index: 2;
+  cursor: pointer;
 }
 .dropdownListItem > input:focus {
-  width: 90%;
+  cursor: text;
 }
 .dropdownListItem > input::placeholder {
   color: #FFFFFF;
-  opacity: 0;
+  font-weight: 400;
 }
-.dropdownListItem > input:where(:hover, :focus)::placeholder {
-  opacity: 1;
+.dropdownListItem > input:where(:focus-within)::placeholder {
+  opacity: 0.8;
 }
 .dropdownListItem > input:where(:not(:placeholder-shown)) + label {
   opacity: 0;
 }
-.dropdownListItem > input:where(:focus) + label {
+.dropdownListItem > input:where(:focus-within) + label {
   display: none;
 }
-.dropdownListItem > input:where(:focus) ~ menu {
+.dropdownListItem > input:where(:focus-within) ~ menu {
   display: grid;
 }
-.dropdownListItem > input:where(:focus) ~ img {
+.dropdownListItem > input:where(:focus-within) ~ img {
   transform: rotate(180deg);
 }
 .dropdownListItem > label {
   display: flex;
-}
-.dropdownListItem > label span {
-  justify-self: left;
-  align-self: center;
+  justify-content: left;
+  align-items: center;
 }
 .dropdownListItem > img {
-  align-self: center;
   justify-self: end;
   margin-right: 10px;
   width: 16px;
+  background-color: transparent;
+  z-index: 1;
+  cursor: pointer;
 }
 .dropdownListItem > menu {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(max-content, 1fr));
+  gap: 1rem 2rem;
   width: inherit;
   background-color: inherit;
   border-radius: 0px 0px 5px 5px;
   transform: translateY(-5px);
+  z-index: 3;
   display: none;
+}
+@media screen and (width < 873px) {
+  .dropdownListItem > menu {
+    grid-template-columns: 1fr;
+  }
+}
+.dropdownListItem > menu:hover {
+  display: grid;
+}
+.dropdownListItem > menu > li {
+  background-color: inherit;
+  cursor: pointer;
+}
+.dropdownListItem > menu > li:hover {
+  text-shadow: 0.03rem 0.03rem #FFFFFF;
+}
+.dropdownListItem > menu > li:focus {
+  outline: solid 2px #FFFFFF;
 }
 
 .searchBar > :is(input, button) {
@@ -235,6 +259,42 @@ body {
   }
 }
 
+[data-ingredient] {
+  background-color: #3282F7;
+}
+
+[data-appliance] {
+  background-color: #68D9A4;
+}
+
+[data-utensil] {
+  background-color: #ED6454;
+}
+
+#tagMenu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#tagMenu > li {
+  display: inline-flex;
+  color: #FFFFFF;
+  height: 37px;
+  border-radius: 5px;
+}
+#tagMenu > li > span {
+  padding: 11px 12px 13px 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+#tagMenu > li > button {
+  padding-right: 22px;
+  align-self: center;
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -253,6 +313,11 @@ header {
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  gap: 1rem;
+}
+
+:where(form) {
+  display: grid;
   gap: 1rem;
 }
 
