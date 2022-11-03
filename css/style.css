@@ -34,8 +34,15 @@ body {
   display: none;
 }
 
-[data-recipe-article] {
+[data-recipe-article].found {
   display: flex;
+}
+
+[data-recipe-article].notfound {
+  display: none;
+}
+
+[data-recipe-article] {
   flex-direction: column;
   background-color: #E7E7E7;
   border-radius: 5px;
@@ -108,7 +115,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.dropdownList {
+.dropdownMenu {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -198,7 +205,7 @@ body {
 }
 .dropdownListItem > img {
   justify-self: end;
-  margin-right: 10px;
+  margin-right: 26px;
   width: 16px;
   background-color: transparent;
   z-index: 1;
@@ -206,9 +213,12 @@ body {
 }
 .dropdownListItem > menu {
   grid-template-columns: repeat(3, minmax(max-content, 1fr));
-  gap: 1rem 2rem;
+  gap: 1rem 7rem;
+  justify-content: space-between;
+  justify-items: left;
   width: inherit;
   background-color: inherit;
+  padding-right: 1.625rem;
   border-radius: 0px 0px 5px 5px;
   transform: translateY(-5px);
   z-index: 3;
@@ -222,15 +232,21 @@ body {
 .dropdownListItem > menu:hover {
   display: grid;
 }
-.dropdownListItem > menu > li {
+.dropdownListItem > menu > li:where(.notHidden) {
   background-color: inherit;
   cursor: pointer;
 }
-.dropdownListItem > menu > li:hover {
+.dropdownListItem > menu > li:where(.notHidden):hover {
   text-shadow: 0.03rem 0.03rem #FFFFFF;
 }
-.dropdownListItem > menu > li:focus {
+.dropdownListItem > menu > li:where(.notHidden):focus {
   outline: solid 2px #FFFFFF;
+}
+.dropdownListItem > menu > li:where(.hidden) {
+  display: none;
+}
+.dropdownListItem > menu > li.tagged {
+  display: none;
 }
 
 .searchBar > :is(input, button) {
@@ -294,6 +310,14 @@ body {
   border: none;
   background-color: inherit;
 }
+#tagMenu > li > button > img {
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+#tagMenu > li > button:focus > img {
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
 
 header {
   display: flex;
@@ -312,7 +336,8 @@ header {
 :where(main) {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding-block: 2rem;
+  padding-inline: 3vw;
   gap: 1rem;
 }
 
