@@ -6,11 +6,11 @@ const recipeFactory = recipe => {
         id,
         name,
         servings,
-        ingredients: [...ingredients],
+        ingredients,
         time,
         description,
         appliance,
-        utensils: [...utensils]
+        utensils
     } = recipe;
 
     const clockIconSource = `assets/clock_icon.svg`;
@@ -42,8 +42,9 @@ const recipeFactory = recipe => {
         recipeDescription.textContent = description;
 
         //Set datasets for recipe card contents - for use in JS and CSS
-        recipeArticle.dataset.recipeArticle = name;
-        recipeArticle.dataset.recipeArticleAppliance = appliance;
+        recipeArticle.dataset.recipeArticle = name.toLowerCase();
+        recipeArticle.dataset.recipeArticleAppliance = appliance.toLowerCase();
+
         recipeArticleImage.dataset.recipeImage = "";
         recipeArticleContainer.dataset.recipeContainer = "";
         recipeArticleHeader.dataset.recipeHeader = "";
@@ -53,12 +54,26 @@ const recipeFactory = recipe => {
         recipeIngredientsList.dataset.recipeIngredientsList = "";
         recipeDescription.dataset.recipeDescription = "";
 
+        //Array to hold datasets for ingredients and utensils
+        let ingredientsData = [];
+        let utensilsData = [];
+        
+        //Set recipe utensils data
+        utensils.forEach(utensil => {
+            utensilsData.push(utensil.toLowerCase());
+            recipeArticle.dataset.recipeArticleUtensils = utensilsData;
+        })
+
         //For each ingredient object in [ingredients]
         ingredients.forEach(ingredient => {
             //Set variables for the values of each ingredient name, quanity, and unit
             let ingredientNameValue = ingredient.ingredient;
             let ingredientQuantityValue = ingredient.quantity;
             let ingredientUnitValue = ingredient.unit;
+
+            //Set recipe ingredient data
+            ingredientsData.push(ingredientNameValue.toLowerCase());
+            recipeArticle.dataset.recipeArticleIngredients = ingredientsData;
 
             //Create ingredient list item elements
             let recipeIngredientName = document.createElement("span");
@@ -119,11 +134,13 @@ const recipeFactory = recipe => {
         recipeArticleContainer.append(recipeArticleHeader, recipeArticleBody);
         recipeArticle.append(recipeArticleImage, recipeArticleContainer);
 
+        //Add .found class to articles by default
+        recipeArticle.classList.add("found");
         return(recipeArticle);
     }
 
     return {
-        id, name, servings, ingredients: [], time, description, appliance, utensils: [], recipeCardDOM
+        id, name, servings, ingredients, time, description, appliance, utensils, recipeCardDOM
     };
 };
 
