@@ -50,14 +50,18 @@ const recipesOutputMutationObserver = new MutationObserver(mutations => {
 
 //Function to edit the available options in the dropdown menus
 //...based on the currently displayed recipes
+//Note - eliminated class refers to list options that are not included in the visible recipes
 export const editDropdownList = (dropdownList, uniqueFoundRecipeData, datalabel) => {
     for(let listOption of dropdownList) {
         if(uniqueFoundRecipeData.includes(listOption.dataset[`${datalabel}`])) {
-            if(listOption.classList.contains("hidden") && !(listOption.classList.contains("tagged"))) {
+            if(listOption.classList.contains("hidden") && listOption.classList.contains("eliminated") 
+                && !(listOption.classList.contains("tagged"))) {
                 listOption.classList.replace("hidden", "notHidden");
+                listOption.classList.remove("eliminated");
             }
         } else {
             listOption.classList.replace("notHidden", "hidden");
+            listOption.classList.add("eliminated");
         }
     }
 };
