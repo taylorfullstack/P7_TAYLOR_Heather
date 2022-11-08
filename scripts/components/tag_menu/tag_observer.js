@@ -1,4 +1,4 @@
-import { ingredientLabel, applianceLabel, utensilLabel } from "../factories/dropdownFactory.js";
+import { ingredientLabel, applianceLabel, utensilLabel } from "../../factories/dropdown_factory.js";
 
 //#tagMenu Mutation Observer
 //Update the visible RECIPES on the page every time a tag is created or deleted
