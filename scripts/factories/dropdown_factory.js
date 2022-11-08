@@ -1,5 +1,5 @@
 import { recipes } from "../data/recipes.js";
-import { createTag, selectedOption } from "../helpers/tags.js";
+import { createTag, selectedOption } from "../components/tag_menu/tags.js";
 
 //Dropdown menu constants
 export const menuIngredients = document.getElementById("menuIngredients");
