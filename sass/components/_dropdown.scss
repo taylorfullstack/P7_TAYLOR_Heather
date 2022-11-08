@@ -130,12 +130,20 @@
             display: none;
         }
     }
-    & > menu[data-error]::after {
+    & > menu[data-error]::before {
         content: attr(data-error);
+    }
+    & > menu[data-empty]::after {
+        content: attr(data-empty);
+    }
+    & > menu[data-error]::before,
+        menu[data-empty]::after {
         font-size: 1rem;
+        color: $color-text-black;
         display: none;
     }
-    & > menu[data-error-visible="true"]::after {
-        display: block;
+    & > menu[data-error-visible="true"]::before,
+        menu[data-empty-visible="true"]::after {
+        display: flex;
     }
 }
