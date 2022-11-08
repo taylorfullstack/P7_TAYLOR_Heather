@@ -1,10 +1,11 @@
-import { recipeFactory, recipes } from "./factories/recipeFactory.js";
-import { } from "./factories/dropdownFactory.js";
-import { } from "./helpers/keyboard.js";
-import { } from "./helpers/dropdownInputs.js";
-import { } from "./helpers/tags.js";
-import { } from "./helpers/tagObserver.js";
-import { } from "./helpers/recipeObserver.js";
+import { recipeFactory, recipes } from "./factories/recipe_factory.js"
+import { } from "./factories/dropdown_factory.js";
+import { } from "./components/dropdown/dropdown_keyboard_navigation.js";
+import { } from "./components/dropdown/dropdown_inputs.js";
+import { } from "./components/dropdown/dropdown_observer.js"
+import { } from "./components/tag_menu/tags.js";
+import { } from "./components/tag_menu/tag_observer.js";
+import { } from "./components/recipes_output/recipe_observer.js";
 
 const recipesOutput = document.getElementById("recipesOutput");
 //Function to display all recipe cards
