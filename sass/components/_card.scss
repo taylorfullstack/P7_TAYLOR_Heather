@@ -1,7 +1,14 @@
 @use "../abstracts" as *;
 
-[data-recipe-article] {
+[data-recipe-article].found {
     display: flex;
+}
+
+[data-recipe-article].notfound {
+    display: none;
+}
+
+[data-recipe-article] {
     flex-direction: column;
     background-color: $color-card;
     border-radius: 5px;

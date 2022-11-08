@@ -3,7 +3,13 @@
 :where(main) {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding-block: 2rem;
+    padding-inline: clamp(1vw, 3vw, 4vw);
+    gap: 1rem;
+}
+
+:where(form) {
+    display: grid;
     gap: 1rem;
 }
 

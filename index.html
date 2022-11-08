@@ -22,13 +22,78 @@
             <img src="assets/search_icon.svg" alt="recherche" width="20" height="20">
           </button>
         </fieldset> 
-        <fieldset class="tagSection">
+        <fieldset id="tagSection" class="tagSection">
+          <menu id="tagMenu"></menu>
         </fieldset>
         <fieldset>
-          <menu class="dropdownList"></menu>
+          <menu id="dropdownMenu" class="dropdownMenu" tabindex="0">
+            <li id="dropdownIngredients" class="dropdownListItem backgroundColor--1">
+              <input
+                tabindex="0"
+                type="text"
+                id="ingredientsInput"
+                data-dropdown-input="ingredients"
+                placeholder="Rechercher un ingrédient" 
+                size="22"
+                role="combobox"
+                aria-expanded="false"
+                aria-controls="menuIngredients"
+                aria-autocomplete="list">
+              <label for="ingredientsInput">
+                <span id="labelIngredients">Ingrédients</span>
+              </label>
+              <img src="assets/arrow_down.svg" alt="">
+              <menu 
+                id="menuIngredients" role="listbox" class="listbox" aria-multiselectable="true"
+                aria-live="polite" aria-labelledby="labelIngredients" aria-expanded="false">
+              </menu>
+            </li>
+            <li id="dropdownAppliances" class="dropdownListItem backgroundColor--2">
+              <input
+                tabindex="0"
+                type="text"
+                id="appliancesInput"
+                data-dropdown-input="appliances"
+                placeholder="Rechercher un appareil" 
+                size="22"
+                role="combobox"
+                aria-expanded="false"
+                aria-controls="menuAppliances"
+                aria-autocomplete="list">
+              <label for="appliancesInput">
+                <span id="labelAppliances">Appareils</span>
+              </label>
+              <img src="assets/arrow_down.svg" alt="">
+              <menu
+              id="menuAppliances" role="listbox" class="listbox" aria-multiselectable="true"
+              aria-live="polite" aria-labelledby="labelAppliances" aria-expanded="false">
+              </menu>
+            </li>
+            <li id="dropdownUtensils" class="dropdownListItem backgroundColor--3 ">
+              <input
+                tabindex="0"
+                type="text"
+                id="utensilsInput"
+                data-dropdown-input="utensils"
+                placeholder="Rechercher un ustensile" 
+                size="22"
+                role="combobox"
+                aria-expanded="false"
+                aria-controls="menuUtensils"
+                aria-autocomplete="list">
+              <label for="utensilsInput">
+                <span id="labelUtensils">Ustensiles</span>
+              </label>
+              <img src="assets/arrow_down.svg" alt="">
+              <menu
+                id="menuUtensils" role="listbox" class="listbox" aria-multiselectable="true"
+                aria-live="polite" aria-labelledby="labelUtensils" aria-expanded="false">
+              </menu>
+            </li>
+          </menu>
         </fieldset>
       </form>
-      <output id="recipes" name="recipes" form="form" aria-live="polite" data-recipes-section></ouput>
+      <output id="recipesOutput" name="recipesOutput" form="form" aria-live="polite" data-recipes-section></ouput>
     </main>
     <footer></footer>
     <script type="module" src="scripts/index.js"></script>

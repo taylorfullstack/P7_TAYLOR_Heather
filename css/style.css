@@ -26,12 +26,23 @@ body {
   outline: none;
 }
 
-:where(menu, ul) {
+:is(menu, ul) {
   list-style: none;
 }
 
-[data-recipe-article] {
+.hidden {
+  display: none;
+}
+
+[data-recipe-article].found {
   display: flex;
+}
+
+[data-recipe-article].notfound {
+  display: none;
+}
+
+[data-recipe-article] {
   flex-direction: column;
   background-color: #E7E7E7;
   border-radius: 5px;
@@ -104,6 +115,140 @@ body {
   text-overflow: ellipsis;
 }
 
+.dropdownMenu {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.backgroundColor--1 {
+  background-color: #3282F7;
+}
+.backgroundColor--2 {
+  background-color: #68D9A4;
+}
+.backgroundColor--3 {
+  background-color: #ED6454;
+}
+
+.dropdownListItem {
+  display: grid;
+  height: 69px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  align-items: center;
+}
+.dropdownListItem > :is(input, label, img) {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  font-weight: 700;
+}
+.dropdownListItem > :is(input, label, menu) {
+  font-size: 18px;
+  padding: 19px;
+}
+.dropdownListItem > :is(input, label) {
+  width: 170px;
+  height: inherit;
+}
+.dropdownListItem:focus-within > label {
+  display: none;
+}
+.dropdownListItem:focus-within > input {
+  width: 90%;
+}
+.dropdownListItem:focus-within > img {
+  transform: rotate(180deg);
+}
+.dropdownListItem:focus-within > menu {
+  display: grid;
+}
+.dropdownListItem:focus-within > input::placeholder {
+  opacity: 0.8;
+}
+.dropdownListItem:not(:focus-within) > input::placeholder {
+  opacity: 0;
+}
+.dropdownListItem > input {
+  padding-right: 30px;
+  color: inherit;
+  background-color: transparent;
+  z-index: 2;
+  cursor: pointer;
+}
+.dropdownListItem > input:focus {
+  cursor: text;
+}
+.dropdownListItem > input::placeholder {
+  color: #FFFFFF;
+  font-weight: 400;
+}
+.dropdownListItem > input:where(:focus-within)::placeholder {
+  opacity: 0.8;
+}
+.dropdownListItem > input:where(:not(:placeholder-shown)) + label {
+  opacity: 0;
+}
+.dropdownListItem > input:where(:focus-within) + label {
+  display: none;
+}
+.dropdownListItem > input:where(:focus-within) ~ menu {
+  display: grid;
+}
+.dropdownListItem > input:where(:focus-within) ~ img {
+  transform: rotate(180deg);
+}
+.dropdownListItem > label {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.dropdownListItem > img {
+  justify-self: end;
+  margin-right: 26px;
+  width: 16px;
+  background-color: transparent;
+  z-index: 1;
+  cursor: pointer;
+}
+.dropdownListItem > menu {
+  grid-template-columns: repeat(3, minmax(max-content, 1fr));
+  gap: 1rem 7rem;
+  justify-content: space-between;
+  justify-items: left;
+  width: inherit;
+  background-color: inherit;
+  padding-right: 1.625rem;
+  border-radius: 0px 0px 5px 5px;
+  transform: translateY(-5px);
+  z-index: 3;
+  display: none;
+}
+@media screen and (width < 873px) {
+  .dropdownListItem > menu {
+    grid-template-columns: 1fr;
+  }
+}
+.dropdownListItem > menu:hover {
+  display: grid;
+}
+.dropdownListItem > menu > li:where(.notHidden) {
+  background-color: inherit;
+  cursor: pointer;
+}
+.dropdownListItem > menu > li:where(.notHidden):hover {
+  text-shadow: 0.03rem 0.03rem #FFFFFF;
+}
+.dropdownListItem > menu > li:where(.notHidden):focus {
+  outline: solid 2px #FFFFFF;
+}
+.dropdownListItem > menu > li:where(.hidden) {
+  display: none;
+}
+.dropdownListItem > menu > li.tagged {
+  display: none;
+}
+
 .searchBar > :is(input, button) {
   background-color: #E7E7E7;
   height: 70px;
@@ -130,6 +275,50 @@ body {
   }
 }
 
+[data-ingredient] {
+  background-color: #3282F7;
+}
+
+[data-appliance] {
+  background-color: #68D9A4;
+}
+
+[data-utensil] {
+  background-color: #ED6454;
+}
+
+#tagMenu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#tagMenu > li {
+  display: inline-flex;
+  color: #FFFFFF;
+  height: 37px;
+  border-radius: 5px;
+}
+#tagMenu > li > span {
+  padding: 11px 12px 13px 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+#tagMenu > li > button {
+  padding-right: 22px;
+  align-self: center;
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
+#tagMenu > li > button > img {
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+#tagMenu > li > button:focus > img {
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -147,7 +336,13 @@ header {
 :where(main) {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding-block: 2rem;
+  padding-inline: 3vw;
+  gap: 1rem;
+}
+
+:where(form) {
+  display: grid;
   gap: 1rem;
 }
 

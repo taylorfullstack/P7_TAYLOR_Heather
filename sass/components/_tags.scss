@@ -1,0 +1,45 @@
+@use "../abstracts" as *;
+
+[data-ingredient] {
+    background-color: $color-1;
+}
+
+[data-appliance] {
+    background-color: $color-2;
+}
+
+[data-utensil] {
+    background-color: $color-3;
+}
+
+#tagMenu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    & > li {
+        display: inline-flex;
+        color: $color-text-white;
+        height: 37px;
+        border-radius: 5px;
+        & > span {
+            padding: 11px 12px 13px 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        & > button {
+            padding-right: 22px;
+            align-self: center;
+            outline: none;
+            border: none;
+            background-color: inherit;
+            & > img {
+                border: 2px solid transparent;
+                border-radius: 50%;
+            }
+            &:focus > img {
+                border: 2px solid $color-text-white;
+                border-radius: 50%;
+            }
+        }
+    }
+}

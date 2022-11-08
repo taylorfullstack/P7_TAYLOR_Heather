@@ -38,7 +38,7 @@ export const recipes = [
         "servings": 2,
         "ingredients": [
             {
-                "ingredient": "Thon Rouge (ou blanc)",
+                "ingredient": "Thon rouge (ou blanc)",
                 "quantity": 200,
                 "unit": "g"
             },
@@ -55,11 +55,11 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Citron Vert",
+                "ingredient": "Citron vert",
                 "quantity": 5
             },
             {
-                "ingredient": "Lait de Coco",
+                "ingredient": "Lait de coco",
                 "quantity": 100,
                 "unit": "ml"
             }
@@ -205,7 +205,7 @@ export const recipes = [
                 "unit": "cl"
             },
             {
-                "ingredient": "Sucre en Poudre",
+                "ingredient": "Sucre en poudre",
                 "quantity": 100,
                 "unit": "g"
             },
@@ -278,7 +278,7 @@ export const recipes = [
                 "quantity": 2
            },
            {
-               "ingredient": "Sucre en Poudre",
+               "ingredient": "Sucre en poudre",
                "quantity": 110,
                "unit": "g"
            },
@@ -312,7 +312,7 @@ export const recipes = [
                 "unit": "g"
             },
             {
-                "ingredient": "Vinaigre Balsamic"
+                "ingredient": "Vinaigre balsamic"
             },
             {
                 "ingredient": "Huile d'olive"
@@ -385,7 +385,7 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Salade Verte",
+                "ingredient": "Salade verte",
                 "quantity": 1
             },
             {
@@ -805,7 +805,7 @@ export const recipes = [
                 "quantity": 3
             },
             {
-                "ingredient": "Crème Fraîche",
+                "ingredient": "Crème fraîche",
                 "quantity": 20,
                 "unit": "cl"
             },
@@ -908,7 +908,7 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Huile d'olives"
+                "ingredient": "Huile d'olive"
             },
             {
                 "ingredient": "Oignon",
@@ -1136,7 +1136,7 @@ export const recipes = [
                 "unit": "tranches"
             },
             {
-                "ingredient": "Saumon Fumé",
+                "ingredient": "Saumon fumé",
                 "quantity": 4,
                 "unit": "tranches"
             },
@@ -1281,7 +1281,7 @@ export const recipes = [
                 "unit": "g"
             },
             {
-                "ingredient": "Huile d'olives",
+                "ingredient": "Huile d'olive",
                 "quantity": 25,
                 "unit": "cl"
             },
@@ -1377,7 +1377,7 @@ export const recipes = [
                 "unit": "litres"
             },
             {
-                "ingredient": "Citron Vert",
+                "ingredient": "Citron vert",
                 "quantity": 3
             },
             {
@@ -1610,7 +1610,7 @@ export const recipes = [
                 "unit": "g"
             },
             {
-                "ingredient": "Crème Fraîche",
+                "ingredient": "Crème fraîche",
                 "quantity": 20,
                 "unit": "cl"
             }
@@ -1640,7 +1640,7 @@ export const recipes = [
                 "unit": "barquettes"
             },
             {
-                "ingredient": "Champignons de paris",
+                "ingredient": "Champignons de Paris",
                 "quantity": 1,
                 "unit": "boites"
             },
@@ -1661,11 +1661,11 @@ export const recipes = [
         "servings": 4,
         "ingredients": [
             {
-                "ingredient": "Bananes",
+                "ingredient": "Banane",
                 "quantity": 2
             },
             {
-                "ingredient": "Kiwis",
+                "ingredient": "Kiwi",
                 "quantity": 3
             },
             {
@@ -1703,7 +1703,7 @@ export const recipes = [
                 "quantity": 6
             },
             {
-                "ingredient": "Poudre d'amendes",
+                "ingredient": "Poudre d'amandes",
                 "quantity": 500,
                 "unit": "g"
             },
