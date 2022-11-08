@@ -248,6 +248,22 @@ body {
 .dropdownListItem > menu > li.tagged {
   display: none;
 }
+.dropdownListItem > menu[data-error]::before {
+  content: attr(data-error);
+}
+.dropdownListItem > menu[data-empty]::after {
+  content: attr(data-empty);
+}
+.dropdownListItem > menu[data-error]::before,
+.dropdownListItem menu[data-empty]::after {
+  font-size: 1rem;
+  color: #000000;
+  display: none;
+}
+.dropdownListItem > menu[data-error-visible=true]::before,
+.dropdownListItem menu[data-empty-visible=true]::after {
+  display: flex;
+}
 
 .searchBar > :is(input, button) {
   background-color: #E7E7E7;
