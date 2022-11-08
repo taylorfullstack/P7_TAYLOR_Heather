@@ -1,5 +1,6 @@
-import { ingredientsList, appliancesList, utensilsList } from "../factories/dropdownFactory.js";
-import { removeAccents } from "./textInput.js";
+import { ingredientsList, appliancesList, utensilsList } from "../../factories/dropdown_factory.js";
+import { removeAccents } from "../../helpers/text_input.js";
+import { isEliminatedOrTagged } from "./dropdown_observer.js";
 
 //INPUT CONSTANTS
 export const ingredientsInput = document.getElementById("ingredientsInput");
@@ -34,12 +35,16 @@ const dropdownSearch = (event) => {
     //If the option doesn't include the user's inputed text, then hide it
     for (const option of array) {
         if(!removeAccents(option.textContent.toLowerCase()).includes(typedText)) {
-            option.classList.add("hidden");
-        } else {
-            option.classList.remove("hidden");
+            option.classList.replace("notHidden", "hidden");
+        } 
+        else if(!option.classList.contains("eliminated") && !option.classList.contains("tagged")){
+            option.classList.replace("hidden", "notHidden");
         }
+
         //Call isHidden() to display an error message if no list options match the user input
-        if(array.every(isHidden)){
+        if(array.every(isHidden) && array.every(isEliminatedOrTagged)) {
+            option.parentElement.dataset.errorVisible = "false";
+        } else if(array.every(isHidden)){
             option.parentElement.dataset.errorVisible = "true";
         } else {
             option.parentElement.dataset.errorVisible = "false";
@@ -47,10 +52,10 @@ const dropdownSearch = (event) => {
     }
 }
 
-//Function to check if an element has the class hidden
-const isHidden = (element) => element.classList.contains("hidden");
-
 //Listen for typed text in any and all of the three dropdown input fields
 ingredientsInput.addEventListener("input", dropdownSearch);
 appliancesInput.addEventListener("input", dropdownSearch);
 utensilsInput.addEventListener("input", dropdownSearch);
+
+//Function to check if an element has the class hidden
+export const isHidden = (element) => element.classList.contains("hidden");
