@@ -1,5 +1,6 @@
-import { ingredientsInput, appliancesInput, utensilsInput } from "./dropdownInputs.js"
-import { ingredientLabel, applianceLabel, utensilLabel } from "../factories/dropdownFactory.js";
+import { ingredientsInput, appliancesInput, utensilsInput } from "../dropdown/dropdown_inputs.js"
+import { ingredientLabel, applianceLabel, utensilLabel } from "../../factories/dropdown_factory.js";
+
 export const tagMenu = document.getElementById("tagMenu");
 export const closeIconSource = `assets/close_icon.svg`;
 
@@ -12,7 +13,8 @@ export const selectedOption = (event) => {
 //Function to create tags when a dropdown menu list item is clicked on
 export const createTag = (event) => {
     let option = event.target;
-    
+    let inputField = option.parentElement.parentElement.firstElementChild;
+
     const tag = document.createElement("li"); //console.log("making a tag");
 
     //Create the tag close button and its icon
@@ -69,6 +71,7 @@ export const createTag = (event) => {
     //...so that no duplicate tags can be created
     option.classList.replace("notHidden", "hidden");
     option.classList.add("tagged");
+    inputField.value = "";
     option.removeEventListener("click", createTag);
     option.removeEventListener("keydown", selectedOption);
 }
