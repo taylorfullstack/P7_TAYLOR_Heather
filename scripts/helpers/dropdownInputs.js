@@ -38,8 +38,17 @@ const dropdownSearch = (event) => {
         } else {
             option.classList.remove("hidden");
         }
+        //Call isHidden() to display an error message if no list options match the user input
+        if(array.every(isHidden)){
+            option.parentElement.dataset.errorVisible = "true";
+        } else {
+            option.parentElement.dataset.errorVisible = "false";
+        }
     }
 }
+
+//Function to check if an element has the class hidden
+const isHidden = (element) => element.classList.contains("hidden");
 
 //Listen for typed text in any and all of the three dropdown input fields
 ingredientsInput.addEventListener("input", dropdownSearch);

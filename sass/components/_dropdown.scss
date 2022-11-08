@@ -130,5 +130,12 @@
             display: none;
         }
     }
+    & > menu[data-error]::after {
+        content: attr(data-error);
+        font-size: 1rem;
+        display: none;
+    }
+    & > menu[data-error-visible="true"]::after {
+        display: block;
+    }
 }
-

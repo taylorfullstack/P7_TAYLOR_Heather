@@ -53,6 +53,8 @@ const createDropdownList = (array, menu, datalabel) => {
         listItem.tabIndex = "-1";
         listItem.dataset[`${datalabel}`] = `${option}`.toLowerCase();
         menu.append(listItem);
+        menu.dataset.errorVisible = "false";
+        menu.dataset.error = "Veuillez essayer un autre terme de recherche.";
     });
 }
 
