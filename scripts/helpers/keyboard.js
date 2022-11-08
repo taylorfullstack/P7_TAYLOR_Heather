@@ -1,4 +1,4 @@
-import { ingredientsInput, appliancesInput, utensilsInput } from "./inputs.js";
+import { ingredientsInput, appliancesInput, utensilsInput } from "./dropdownInputs.js";
 import { ingredientsList, appliancesList, utensilsList } from "../factories/dropdownFactory.js";
 
 //Primary dropdown menu containing the three dropdowns

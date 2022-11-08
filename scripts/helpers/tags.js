@@ -1,4 +1,4 @@
-import { ingredientsInput, appliancesInput, utensilsInput } from "./inputs.js"
+import { ingredientsInput, appliancesInput, utensilsInput } from "./dropdownInputs.js"
 import { ingredientLabel, applianceLabel, utensilLabel } from "../factories/dropdownFactory.js";
 export const tagMenu = document.getElementById("tagMenu");
 export const closeIconSource = `assets/close_icon.svg`;
