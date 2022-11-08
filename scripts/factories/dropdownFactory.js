@@ -54,7 +54,9 @@ const createDropdownList = (array, menu, datalabel) => {
         listItem.dataset[`${datalabel}`] = `${option}`.toLowerCase();
         menu.append(listItem);
         menu.dataset.errorVisible = "false";
+        menu.dataset.emptyVisible = "false";
         menu.dataset.error = "Veuillez essayer un autre terme de recherche.";
+        menu.dataset.empty = "Veuillez enlever un tag pour voir plus d'options.";
     });
 }
 
