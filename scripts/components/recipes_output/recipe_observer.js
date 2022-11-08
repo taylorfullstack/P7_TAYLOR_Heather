@@ -1,5 +1,5 @@
-import { ingredientsList, appliancesList, utensilsList } from "../factories/dropdownFactory.js";
-import { applianceLabel, utensilLabel, ingredientLabel } from "../factories/dropdownFactory.js";
+import { ingredientsList, appliancesList, utensilsList, applianceLabel, utensilLabel, ingredientLabel } from "../../factories/dropdown_factory.js";
+import { classMutationConfiguration } from "../../helpers/mutation_observer_configuration.js";
 
 //RecipesOutput Mutation Observer
 const recipesOutputMutant = document.querySelector("#recipesOutput");
@@ -66,12 +66,4 @@ export const editDropdownList = (dropdownList, uniqueFoundRecipeData, datalabel)
     }
 };
 
-//recipesOutputMutationObserver configuration
-const classMutationConfig = {
-    subtree: true,
-    attributes: true,
-    attributeOldValue: true,
-    attributeFilter: ["class"]
-};
-
-recipesOutputMutationObserver.observe(recipesOutputMutant, classMutationConfig);
+recipesOutputMutationObserver.observe(recipesOutputMutant, classMutationConfiguration);
