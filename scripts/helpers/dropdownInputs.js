@@ -1,9 +1,5 @@
 import { ingredientsList, appliancesList, utensilsList } from "../factories/dropdownFactory.js";
-
-//Function to convert strings to the NFD normalized Unicode format
-//Then, replace accents with empty strings
-const removeAccents = (string) =>
-string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+import { removeAccents } from "./textInput.js";
 
 //INPUT CONSTANTS
 export const ingredientsInput = document.getElementById("ingredientsInput");
