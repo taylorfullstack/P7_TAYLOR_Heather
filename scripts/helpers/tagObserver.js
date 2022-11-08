@@ -1,5 +1,4 @@
 import { ingredientLabel, applianceLabel, utensilLabel } from "../factories/dropdownFactory.js";
-import { tagMenu } from "./tags.js";
 
 //#tagMenu Mutation Observer
 //Update the visible RECIPES on the page every time a tag is created or deleted
@@ -19,38 +18,34 @@ export const tagMutationObserver = new MutationObserver(mutations => {
             
             addedTag = mutation.addedNodes[0]; //console.log("node added", addedTag);
 
-            let addedApplianceTagData = addedTag.dataset.appliance;
-            let addedUtensilTagData = addedTag.dataset.utensil;
-            let addedIngredientTagData = addedTag.dataset.ingredient;
+            let addedApplianceTagData = addedTag.dataset[`${applianceLabel}`]; //console.log(addedApplianceTagData);
+            let addedUtensilTagData = addedTag.dataset[`${utensilLabel}`]; //console.log(addedUtensilTagData);
+            let addedIngredientTagData = addedTag.dataset[`${ingredientLabel}`]; //console.log(addedIngredientTagData);
             
-            if(addedApplianceTagData !== undefined){
+            //Function factory to hide recipes if they do not contain the
+            //...ingredient, appliance, or utensil specified by an added tag
+            const hideRecipe = (dataCategoryIndex, addedTagDataCategory) => {
                 for(const recipe of foundCollection){
-                    const recipeApplianceData = recipe.dataset.recipeArticleAppliance.toLowerCase();
-
-                    if(addedApplianceTagData !== recipeApplianceData){
-                        recipe.classList.replace("found", "notfound");
-                    }
-                };
-            };
-            
-            if(addedUtensilTagData !== undefined){
-                for(const recipe of foundCollection){
-                    const recipeUtensilsData = recipe.dataset.recipeArticleUtensils.toLowerCase();
+                    const recipeItemsDataCategory = Object.keys(recipe.dataset)[`${dataCategoryIndex}`];
+                    const recipeItemsData = recipe.dataset[`${recipeItemsDataCategory}`].toLowerCase();
                     
-                    if(!recipeUtensilsData.includes(addedUtensilTagData)){
+                    if(!recipeItemsData.includes(addedTagDataCategory)){
                         recipe.classList.replace("found", "notfound");
                     }
                 };
             }
 
+            //Call the hideRecipe() function with arguments relative to the type of added tag
+            if(addedApplianceTagData !== undefined){
+                hideRecipe(1, addedApplianceTagData);
+            }
+
+            if(addedUtensilTagData !== undefined){
+                hideRecipe(2, addedUtensilTagData);
+            }
+
             if(addedIngredientTagData !== undefined){
-                for(const recipe of foundCollection){
-                    const recipeIngredientsData = recipe.dataset.recipeArticleIngredients.toLowerCase();
-                    
-                    if(!recipeIngredientsData.includes(addedIngredientTagData)){
-                        recipe.classList.replace("found", "notfound");
-                    }
-                };
+                hideRecipe(3, addedIngredientTagData);
             }
         };
         
