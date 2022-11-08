@@ -1,5 +1,5 @@
-import { ingredientsInput, appliancesInput, utensilsInput } from "./dropdownInputs.js";
-import { ingredientsList, appliancesList, utensilsList } from "../factories/dropdownFactory.js";
+import { ingredientsInput, appliancesInput, utensilsInput } from "./dropdown_inputs.js";
+import { ingredientsList, appliancesList, utensilsList } from "../../factories/dropdown_factory.js";
 
 //Primary dropdown menu containing the three dropdowns
 const dropdownMenu = document.getElementById("dropdownMenu");
