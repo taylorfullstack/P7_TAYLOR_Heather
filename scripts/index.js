@@ -3,6 +3,7 @@ import { } from "./factories/dropdown_factory.js";
 import { } from "./components/dropdown/dropdown_keyboard_navigation.js";
 import { } from "./components/dropdown/dropdown_inputs.js";
 import { } from "./components/dropdown/dropdown_observer.js"
+import { } from "./components/dropdown/dropdown_aria.js";
 import { } from "./components/tag_menu/tags.js";
 import { } from "./components/tag_menu/tag_observer.js";
 import { } from "./components/recipes_output/recipe_observer.js";
