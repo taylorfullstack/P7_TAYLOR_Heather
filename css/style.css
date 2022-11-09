@@ -258,11 +258,12 @@ body {
 .dropdownListItem menu[data-empty]::after {
   font-size: 1rem;
   color: #000000;
+  grid-column: span 3;
   display: none;
 }
 .dropdownListItem > menu[data-error-visible=true]::before,
 .dropdownListItem menu[data-empty-visible=true]::after {
-  display: flex;
+  display: block;
 }
 
 .searchBar > :is(input, button) {
