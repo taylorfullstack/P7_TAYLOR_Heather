@@ -93,7 +93,11 @@
           </menu>
         </fieldset>
       </form>
-      <output id="recipesOutput" name="recipesOutput" form="form" aria-live="polite" data-recipes-section></ouput>
+      <section aria-live="polite" id="noRecipes" data-results="some">
+        <p>Aucune recette ne correspond à votre critère… vous pouvez
+          chercher « tarte aux pommes », « poisson », etc.
+        </p>
+      </section>
     </main>
     <footer></footer>
     <script type="module" src="scripts/index.js"></script>
