@@ -140,10 +140,11 @@
         menu[data-empty]::after {
         font-size: 1rem;
         color: $color-text-black;
+        grid-column: span 3;
         display: none;
     }
     & > menu[data-error-visible="true"]::before,
         menu[data-empty-visible="true"]::after {
-        display: flex;
+        display: block;
     }
 }
