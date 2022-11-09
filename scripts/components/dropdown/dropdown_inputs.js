@@ -1,6 +1,13 @@
 import { ingredientsList, appliancesList, utensilsList } from "../../factories/dropdown_factory.js";
 import { removeAccents } from "../../helpers/text_input.js";
-import { isEliminatedOrTagged } from "./dropdown_observer.js";
+
+//Function to check whether a dropdown menu option has either of the
+//...eliminated or tagged classes
+const isEliminatedOrTagged = (element) => {
+    if(element.classList.contains("eliminated") || element.classList.contains("tagged")){
+        return true;
+    }
+}
 
 //INPUT CONSTANTS
 export const ingredientsInput = document.getElementById("ingredientsInput");
@@ -35,10 +42,14 @@ const dropdownSearch = (event) => {
     //If the option doesn't include the user's inputed text, then hide it
     for (const option of array) {
         if(!removeAccents(option.textContent.toLowerCase()).includes(typedText)) {
-            option.classList.replace("notHidden", "hidden");
+            if(!option.classList.contains("eliminated") && !option.classList.contains("tagged")){
+                option.classList.replace("notHidden", "hidden");
+                option.classList.add("noMatch");
+            }
         } 
         else if(!option.classList.contains("eliminated") && !option.classList.contains("tagged")){
             option.classList.replace("hidden", "notHidden");
+            option.classList.remove("noMatch");
         }
 
         //Call isHidden() to display an error message if no list options match the user input
