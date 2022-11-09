@@ -1,5 +1,6 @@
 import { ingredientsInput, appliancesInput, utensilsInput } from "../dropdown/dropdown_inputs.js"
 import { ingredientLabel, applianceLabel, utensilLabel } from "../../factories/dropdown_factory.js";
+import { dropdownReset } from "../dropdown/dropdown_reset.js";
 
 export const tagMenu = document.getElementById("tagMenu");
 export const closeIconSource = `assets/close_icon.svg`;
@@ -13,7 +14,6 @@ export const selectedOption = (event) => {
 //Function to create tags when a dropdown menu list item is clicked on
 export const createTag = (event) => {
     let option = event.target;
-    let inputField = option.parentElement.parentElement.firstElementChild;
 
     const tag = document.createElement("li"); //console.log("making a tag");
 
@@ -58,20 +58,23 @@ export const createTag = (event) => {
 
     //When a tag's close button is clicked
     //...remove the tag from the DOM
+    //...reset the dropdown menus
     //...allow the tag to be created again
     closeTagButton.addEventListener("click", () => {
-        tag.remove(); //console.log("deleting a tag");
+        tag.remove();
         option.classList.replace("hidden", "notHidden");
         option.classList.remove("tagged");
+        dropdownReset();
         option.addEventListener("click", createTag);
         option.addEventListener("keydown", selectedOption);
     });
     
     //Remove the createTag click and enter key event listeners from the dropdown menu option
     //...so that no duplicate tags can be created
+    //Reset the dropdown menus
     option.classList.replace("notHidden", "hidden");
     option.classList.add("tagged");
-    inputField.value = "";
+    dropdownReset();
     option.removeEventListener("click", createTag);
     option.removeEventListener("keydown", selectedOption);
 }
