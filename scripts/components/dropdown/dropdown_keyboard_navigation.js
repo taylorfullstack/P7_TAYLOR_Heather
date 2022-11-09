@@ -5,9 +5,9 @@ import { ingredientsList, appliancesList, utensilsList } from "../../factories/d
 const dropdownMenu = document.getElementById("dropdownMenu");
 
 //Each of the 3 dropdowns is an <li> with 4 children: label, input, img, & menu
-const dropdownIngredients = document.getElementById("dropdownIngredients");
-const dropdownAppliances = document.getElementById("dropdownAppliances");
-const dropdownUtensils = document.getElementById("dropdownUtensils");
+export const dropdownIngredients = document.getElementById("dropdownIngredients");
+export const dropdownAppliances = document.getElementById("dropdownAppliances");
+export const dropdownUtensils = document.getElementById("dropdownUtensils");
 
 //If the "Escape" key is pressed
 //..restore focus to the dropdown menu
