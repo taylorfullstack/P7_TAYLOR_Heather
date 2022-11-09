@@ -1,13 +1,16 @@
 import { ingredientsList, appliancesList, utensilsList, applianceLabel, utensilLabel, ingredientLabel } from "../../factories/dropdown_factory.js";
 import { classMutationConfiguration } from "../../helpers/mutation_observer_configuration.js";
 
+const noRecipes = document.getElementById("noRecipes");
 //RecipesOutput Mutation Observer
 const recipesOutputMutant = document.querySelector("#recipesOutput");
-const recipesOutputMutationObserver = new MutationObserver(mutations => {
-    //console.log(mutations);
+const recipesOutputMutationObserver = new MutationObserver(_mutations => {
 
     //Node List of found articles (display: flex;)
     const foundCollection = document.querySelectorAll(".found"); //console.log(foundCollection);
+    
+    //Call the function to display a message if no recipes are found
+    displayNoRecipes(foundCollection);
 
     //Arrays to hold the data of all currently displayed recipes 
     let allFoundRecipeIngredients = [];
@@ -67,3 +70,12 @@ export const editDropdownList = (dropdownList, uniqueFoundRecipeData, datalabel)
 };
 
 recipesOutputMutationObserver.observe(recipesOutputMutant, classMutationConfiguration);
+
+//Function to display a notification if none of the recipes match the user search
+const displayNoRecipes = (collection) => {
+    if(collection.length === 0) {
+        noRecipes.dataset.results = "none";
+    } else {
+        noRecipes.dataset.results = "some";
+    }
+}
