@@ -1,0 +1,28 @@
+@use "../abstracts" as *;
+
+.searchBar {
+    & > :is(input, button) {
+        background-color: $color-searchbar;
+        height: 70px;
+    }
+    & > label {
+        display: none;
+    }
+    & > input {
+        border-radius: 5px 0px 0px 5px;
+        font-size: 1.125rem;
+        color: $color-text-black;
+        padding-left: 1.5rem; 
+        width: 95%;
+        @include smallScreen {
+            width: 90%;
+        }
+    }
+    & > button {
+        border-radius: 0px 5px 5px 0px;
+        width: 5%;
+        @include smallScreen {
+            width: 10%;
+        }
+    }
+}

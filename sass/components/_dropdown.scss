@@ -1,0 +1,150 @@
+@use "../abstracts" as *;
+
+.dropdownMenu {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.backgroundColor {
+    &--1 {background-color: $color-1;}
+    &--2 {background-color: $color-2;}
+    &--3 {background-color: $color-3;}
+}
+
+.dropdownListItem {
+    display: grid;
+    height: 69px;
+    border-radius: 5px;
+    color: $color-text-white;
+    align-items: center;
+    
+    //Specific children of dropdown//
+    & > :is(input, label, img) {
+        grid-column: 1 / -1 ;
+        grid-row: 1 / -1 ;
+        font-weight: 700;
+    }
+    & > :is(input, label, menu) {
+        font-size: 18px;
+        padding: 19px;
+    }
+    & > :is(input, label) {
+        width: 170px;
+        height: inherit;
+    }
+    &:focus-within > label {
+        display: none;
+    }
+    &:focus-within > input {
+        width: 90%;
+    }
+    &:focus-within > img {
+        transform: rotate(180deg);
+    }
+    &:focus-within > menu {
+        display: grid;
+    }
+    &:focus-within > input::placeholder {
+        opacity: 0.8;
+    }
+    
+    &:not(:focus-within) > input::placeholder {
+        opacity: 0;
+    }
+    //Children of dropdown//
+    & > input {
+        padding-right: 30px;
+        color: inherit;
+        background-color: transparent;
+        z-index: 2;
+        cursor: pointer;
+        &:focus {
+            cursor: text;
+        }
+        &::placeholder {
+            color: $color-text-white;
+            font-weight: 400;
+        }
+        &:where(:focus-within)::placeholder{
+            opacity: 0.8;
+        }
+        &:where(:not(:placeholder-shown)) + label {
+            opacity: 0;
+        }
+        &:where(:focus-within) + label {
+            display: none;
+        }
+        &:where(:focus-within) ~ menu {
+            display: grid;
+        }
+        &:where(:focus-within) ~ img {
+            transform: rotate(180deg);
+        }
+    }
+    & > label {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+    & > img {
+        justify-self: end;
+        margin-right: 26px;
+        width: 16px;
+        background-color: transparent;
+        z-index: 1;
+        cursor: pointer;
+    }
+    & > menu {  
+        grid-template-columns: repeat(3, minmax(max-content, 1fr));
+        gap: 1rem 7rem;
+        justify-content: space-between;
+        justify-items: left;
+        width: inherit;
+        background-color: inherit;
+        padding-right: 1.625rem;
+        border-radius: 0px 0px 5px 5px;
+        transform: translateY(-5px);
+        z-index: 3;
+        display: none;
+        @include smallScreen {
+            grid-template-columns: 1fr;
+        }
+        &:hover {
+            display: grid;
+        }
+        & > li:where(.notHidden) {
+            background-color: inherit;
+            cursor: pointer;
+            &:hover {
+                text-shadow: .03rem .03rem $color-text-white;
+            }
+            &:focus {
+                outline: solid 2px $color-text-white;
+            }
+        }
+        & > li:where(.hidden) {
+            display: none;
+        }
+        & > li.tagged {
+            display: none;
+        }
+    }
+    & > menu[data-error]::before {
+        content: attr(data-error);
+    }
+    & > menu[data-empty]::after {
+        content: attr(data-empty);
+    }
+    & > menu[data-error]::before,
+        menu[data-empty]::after {
+        font-size: 1rem;
+        color: $color-text-black;
+        grid-column: span 3;
+        display: none;
+    }
+    & > menu[data-error-visible="true"]::before,
+        menu[data-empty-visible="true"]::after {
+        display: block;
+    }
+}

@@ -17,3 +17,17 @@ body {
     height: 100vh;
     background-color: $color-page;
 }
+
+//Resets
+:where(fieldset, input, button) {
+    border: none;
+    outline: none;
+}
+
+:is(menu, ul) {
+    list-style: none;
+}
+
+.hidden {
+    display: none;
+}

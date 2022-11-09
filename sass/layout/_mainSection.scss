@@ -1,0 +1,46 @@
+@use "../abstracts" as *;
+
+:where(main) {
+    display: flex;
+    flex-direction: column;
+    padding-block: 2rem;
+    padding-inline: clamp(1vw, 3vw, 4vw);
+    gap: 1rem;
+}
+
+:where(form) {
+    display: grid;
+    gap: 1rem;
+}
+
+:where(form) > fieldset {
+    display: flex;
+    width: 100%;
+}
+
+:where([data-recipes-section]) {  
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 380px);
+    justify-content: space-between;
+    gap: 2rem;
+    @include smallScreen {
+        justify-content: center;
+    }
+    @include mediumToLargeScreen {
+        justify-content: space-evenly;
+    }
+}
+
+:where(#noRecipes){
+    width: 100%;
+    justify-content: center;
+}
+
+:where(#noRecipes[data-results="some"]) {
+    display: none;
+}
+
+:where(#noRecipes[data-results="none"]) {
+    display: grid;
+}
