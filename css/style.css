@@ -270,6 +270,9 @@ body {
   background-color: #E7E7E7;
   height: 70px;
 }
+.searchBar > label {
+  display: none;
+}
 .searchBar > input {
   border-radius: 5px 0px 0px 5px;
   font-size: 1.125rem;
@@ -384,6 +387,19 @@ header {
   :where([data-recipes-section]) {
     justify-content: space-evenly;
   }
+}
+
+:where(#noRecipes) {
+  width: 100%;
+  justify-content: center;
+}
+
+:where(#noRecipes[data-results=some]) {
+  display: none;
+}
+
+:where(#noRecipes[data-results=none]) {
+  display: grid;
 }
 
 /*# sourceMappingURL=style.css.map */
