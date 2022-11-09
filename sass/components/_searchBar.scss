@@ -5,6 +5,9 @@
         background-color: $color-searchbar;
         height: 70px;
     }
+    & > label {
+        display: none;
+    }
     & > input {
         border-radius: 5px 0px 0px 5px;
         font-size: 1.125rem;
