@@ -47,6 +47,7 @@ const createDropdownList = (array, menu, datalabel) => {
     array.forEach(option => {
         const listItem = document.createElement("li");
         listItem.textContent = option;
+        listItem.setAttribute("role", "option");
         listItem.addEventListener("click", createTag);
         listItem.addEventListener("keydown", selectedOption);
         listItem.classList.add("notHidden");
