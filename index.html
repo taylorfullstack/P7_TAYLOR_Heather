@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Les petits plats</title>
     <link rel="icon" href="assets/lespetitsplats_logo.svg">
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <header>
-      <img src="assets/lespetitsplats_logo.svg" alt="" width="52" height="47"/>
+      <img src="assets/lespetitsplats_logo.svg" alt="" width="52" height="47">
       <h1 class="h1">Les petits plats</h1>
     </header>
     <main>
-      <form id="form">
-        <fieldset class="searchBar">
-          <label for="searchInput" hidden>Rechercher une recette</label>
-          <input id="searchInput" type="text" name="searchInput" placeholder="Rechercher une recette"/>
+      <form aria-label="Filtrer les recettes" id="form">
+        <fieldset class="searchBar" aria-label="filter par saisie de texte">
+          <label aria-hidden="false" for="searchInput">Rechercher une recette</label>
+          <input id="searchInput" type="text" name="searchInput" placeholder="Rechercher une recette">
           <button type="button">
             <img src="assets/search_icon.svg" alt="recherche" width="20" height="20">
           </button>
-        </fieldset> 
-        <fieldset id="tagSection" class="tagSection">
+        </fieldset>
+        <fieldset id="tagSection" class="tagSection" aria-label="étiquettes actives">
           <menu id="tagMenu" aria-live="polite"></menu>
         </fieldset>
-        <fieldset>
+        <fieldset aria-label="filtrer par étiquette">
           <menu id="dropdownMenu" class="dropdownMenu" tabindex="0">
             <li id="dropdownIngredients" class="dropdownListItem backgroundColor--1">
               <input
@@ -69,7 +69,7 @@
               aria-live="polite" aria-labelledby="labelAppliances" aria-expanded="false">
               </menu>
             </li>
-            <li id="dropdownUtensils" class="dropdownListItem backgroundColor--3 ">
+            <li id="dropdownUtensils" class="dropdownListItem backgroundColor--3">
               <input
                 tabindex="0"
                 type="text"
@@ -93,13 +93,14 @@
           </menu>
         </fieldset>
       </form>
+      <output aria-label="Recettes filtrées" id="recipesOutput" name="recipesOutput" form="form" aria-live="polite" data-recipes-section>
+      </output>
       <section aria-live="polite" id="noRecipes" data-results="some">
         <p>Aucune recette ne correspond à votre critère… vous pouvez
           chercher « tarte aux pommes », « poisson », etc.
         </p>
       </section>
     </main>
-    <footer></footer>
     <script type="module" src="scripts/index.js"></script>
   </body>
 </html>
