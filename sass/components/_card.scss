@@ -12,8 +12,12 @@
     flex-direction: column;
     background-color: $color-card;
     border-radius: 5px;
-    width: 380px;
+    max-width: 380px;
     height: 364px;
+    @include smallScreen{
+        width: 95vw;
+        margin: auto;
+    }
     & > [data-recipe-image] {
         background-color: $color-img-placeholder;
         border-radius: 5px 5px 0px 0px;
@@ -26,6 +30,11 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        @include smallScreen{
+            gap: 1.1rem;
+            padding: 7.5px 9px;
+            min-height: 186px;
+        }
         & [data-recipe-header] {
             display: flex;
             justify-content: flex-end;
@@ -49,37 +58,39 @@
         }
         & [data-recipe-body] {
             display: flex;
-            justify-content: space-between;
+            gap: 0.5rem;
             & [data-recipe-ingredients-list] {
-                width: 171px;
+                width: 50%;
                 line-height: 14.4px;
                 padding-left: 2px;
-            }
-            & [data-recipe-ingredients-list-item] {
-                & span[data-recipe-ingredient] {
-                    font-weight: 700;
-                }
-                & span[data-recipe-ingredient-has-quantity="yes"] {
-                    font-weight: 700;
-                    &::after {
-                        content: ":" "\00a0";
+                & [data-recipe-ingredients-list-item] {
+                    & span[data-recipe-ingredient] {
+                        font-weight: 700;
+                    }
+                    & span[data-recipe-ingredient-has-quantity="yes"] {
+                        font-weight: 700;
+                        &::after {
+                            content: ":" "\00a0";
+                        }
+                    }
+                    & span[data-recipe-unit-abbreviated="no"] {
+                        &::before {
+                            content: "\00a0";
+                        }
                     }
                 }
-                & span[data-recipe-unit-abbreviated="no"] {
-                    &::before {
-                        content: "\00a0";
-                    }
-                }
             }
-            & [data-recipe-description] {
-                font-family: $font-description;
-                width: 171px;
-                line-height: 12px;
-                -webkit-line-clamp: 6;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
+            & div {
+                width: 50%;
+                & [data-recipe-description] {
+                    font-family: $font-description;
+                    line-height: 12px;
+                    -webkit-line-clamp: 6;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
     }
