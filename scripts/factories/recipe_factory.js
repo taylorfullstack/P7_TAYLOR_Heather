@@ -1,62 +1,9 @@
 import { recipes } from "../data/recipes.js";
 
-const recipeFactory = recipe => {
-    //Create recipe constant using destructuring assignment syntax
-    const {
-        id,
-        name,
-        servings,
-        ingredients,
-        time,
-        description,
-        appliance,
-        utensils
-    } = recipe;
-
-    const clockIconSource = `assets/clock_icon.svg`;
-
-    //Create recipe cards
-    const recipeCardDOM = () => {
-        //Create recipe card elements
-        const recipeArticle = document.createElement("article");
-        const recipeArticleImage = document.createElement("div");
-        const recipeArticleContainer = document.createElement("div");
-        const recipeArticleHeader = document.createElement("div");
-        const recipeArticleBody = document.createElement("div");
-        const recipeName = document.createElement("h2");
-        const recipeTime = document.createElement("span");
-        const recipeIngredientsList = document.createElement("ul");
-        const recipeDescriptionContainer = document.createElement("div");
-        const recipeDescription = document.createElement("p");
-
-        //Create clock icon and set its attributes
-        const clockIcon = document.createElement("img");
-        clockIcon.setAttribute("src", clockIconSource);
-        clockIcon.setAttribute("alt", "temps");
-        clockIcon.setAttribute("width", "20");
-        clockIcon.setAttribute("height", "20");
-        
-        //Set text content for recipe name, time, and description
-        recipeName.textContent = name;
-        recipeTime.textContent = `${time} min`;
-        recipeDescription.textContent = description;
-
-        //Set datasets for recipe card contents - for use in JS and CSS
-        recipeArticle.dataset.recipeArticle = name.toLowerCase();
-        recipeArticle.dataset.recipeArticleAppliance = appliance.toLowerCase();
-
-        recipeArticleImage.dataset.recipeImage = "";
-        recipeArticleContainer.dataset.recipeContainer = "";
-        recipeArticleHeader.dataset.recipeHeader = "";
-        recipeArticleBody.dataset.recipeBody = "";
-        recipeName.dataset.recipeName = name;
-        recipeTime.dataset.recipeTime = time;
-        recipeIngredientsList.dataset.recipeIngredientsList = "";
-        recipeDescription.dataset.recipeDescription = "";
-
-        //Array to hold datasets for ingredients and utensils
-        let ingredientsData = [];
-        let utensilsData = [];
+	const {id, name, servings, ingredients, time, description, appliance, utensils} = recipe;
+	const clockIconSource = "assets/clock_icon.svg";
+	const utensilsArray = [];
+	const ingredientsArray = [];
         
         //Set recipe utensils data
         utensils.forEach(utensil => {
@@ -139,9 +86,9 @@ const recipeFactory = recipe => {
         return(recipeArticle);
     }
 
-    return {
-        id, name, servings, ingredients, time, description, appliance, utensils, recipeCardDOM
-    };
+	return {
+		id, name, servings, time, description, appliance, utensilsArray, ingredientsArray, recipeCardDOM
+	};
 };
 
 export {recipes, recipeFactory};
