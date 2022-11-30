@@ -7,14 +7,14 @@ const dropdownResizeObserver = new ResizeObserver(entries => {
 	entries.forEach(entry => {
 		const dropdownMenuSize = entry.borderBoxSize[0].blockSize;
 		const dropdownMenu = entry.target;
-		const dropdownInput = dropdownMenu.parentElement.firstElementChild;
+		const dropdownCombobox = dropdownMenu.parentElement;
 
 		if(dropdownMenuSize === 0){
 			dropdownMenu.setAttribute("aria-expanded", "false");
-			dropdownInput.setAttribute("aria-expanded", "false");
+			dropdownCombobox.setAttribute("aria-expanded", "false");
 		} else {
 			dropdownMenu.setAttribute("aria-expanded", "true");
-			dropdownInput.setAttribute("aria-expanded", "true");
+			dropdownCombobox.setAttribute("aria-expanded", "true");
 		}
 	});
 });
