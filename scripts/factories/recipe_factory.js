@@ -1,147 +1,112 @@
-import { recipes } from "../data/recipes.js";
 
-const recipeFactory = recipe => {
-    //Create recipe constant using destructuring assignment syntax
-    const {
-        id,
-        name,
-        servings,
-        ingredients,
-        time,
-        description,
-        appliance,
-        utensils
-    } = recipe;
-
-    const clockIconSource = `assets/clock_icon.svg`;
-
-    //Create recipe cards
-    const recipeCardDOM = () => {
-        //Create recipe card elements
-        const recipeArticle = document.createElement("article");
-        const recipeArticleImage = document.createElement("div");
-        const recipeArticleContainer = document.createElement("div");
-        const recipeArticleHeader = document.createElement("div");
-        const recipeArticleBody = document.createElement("div");
-        const recipeName = document.createElement("h2");
-        const recipeTime = document.createElement("span");
-        const recipeIngredientsList = document.createElement("ul");
-        const recipeDescriptionContainer = document.createElement("div");
-        const recipeDescription = document.createElement("p");
-
-        //Create clock icon and set its attributes
-        const clockIcon = document.createElement("img");
-        clockIcon.setAttribute("src", clockIconSource);
-        clockIcon.setAttribute("alt", "temps");
-        clockIcon.setAttribute("width", "20");
-        clockIcon.setAttribute("height", "20");
+export const recipeFactory = (recipe) => {
+	const {id, name, servings, ingredients, time, description, appliance, utensils} = recipe;
+	const clockIconSource = "assets/clock_icon.svg";
+	const utensilsArray = [];
+	const ingredientsArray = [];
+	
+	const recipeCardDOM = () => { //Create recipe articles
+		const article = createElement("article", '', 'recipeArticle', name.toLowerCase());
+		const recipeArticleImage = createElement("div", '', 'recipeImage', "");
+		const recipeArticleContainer = createElement("div", '', 'recipeContainer', "");
+		const recipeArticleHeader = createElement("div", '', 'recipeHeader', "");
+		const recipeArticleBody = createElement("div", '', 'recipeBody', "");
+		const recipeName = createElement("h2", name, 'recipeName', name);
+		const recipeTime = createElement("span", `${time} min`, 'recipeTime', time);
+		const recipeIngredientsList = createElement("ul", '', 'recipeIngredientsList', "");
+		const recipeDescriptionContainer = document.createElement("div");
+		const recipeDescription = createElement("p", description, 'recipeDescription', "");
+		const clockIcon = document.createElement("img");
+		clockIcon.src = clockIconSource;
+		clockIcon.alt = "temps";
+		clockIcon.width = 20;
+		clockIcon.height = 20;
         
-        //Set text content for recipe name, time, and description
-        recipeName.textContent = name;
-        recipeTime.textContent = `${time} min`;
-        recipeDescription.textContent = description;
-
-        //Set datasets for recipe card contents - for use in JS and CSS
-        recipeArticle.dataset.recipeArticle = name.toLowerCase();
-        recipeArticle.dataset.recipeArticleAppliance = appliance.toLowerCase();
-
-        recipeArticleImage.dataset.recipeImage = "";
-        recipeArticleContainer.dataset.recipeContainer = "";
-        recipeArticleHeader.dataset.recipeHeader = "";
-        recipeArticleBody.dataset.recipeBody = "";
-        recipeName.dataset.recipeName = name;
-        recipeTime.dataset.recipeTime = time;
-        recipeIngredientsList.dataset.recipeIngredientsList = "";
-        recipeDescription.dataset.recipeDescription = "";
-
-        //Array to hold datasets for ingredients and utensils
-        let ingredientsData = [];
-        let utensilsData = [];
+		//Array to hold datasets for ingredients and utensils
+		const ingredientsData = [];
+		const utensilsData = [];
         
-        //Set recipe utensils data
-        utensils.forEach(utensil => {
-            utensilsData.push(utensil.toLowerCase());
-            recipeArticle.dataset.recipeArticleUtensils = utensilsData;
-        })
+		//Set recipe utensils data
+		utensils.forEach(utensil => {
+			utensilsArray.push(utensil.charAt(0).toUpperCase() + utensil.slice(1).toLowerCase());
+			utensilsData.push(utensil.toLowerCase());
+		})
+		
+		//For each ingredient object in [ingredients]
+		ingredients.forEach(ingredient => {
+			//Set variables for the values of each ingredient name, quanity, and unit
+			let ingredientNameValue = ingredient.ingredient;
+			let ingredientQuantityValue = ingredient.quantity;
+			let ingredientUnitValue = ingredient.unit;
 
-        //For each ingredient object in [ingredients]
-        ingredients.forEach(ingredient => {
-            //Set variables for the values of each ingredient name, quanity, and unit
-            let ingredientNameValue = ingredient.ingredient;
-            let ingredientQuantityValue = ingredient.quantity;
-            let ingredientUnitValue = ingredient.unit;
+			ingredientNameValue = ingredientNameValue.charAt(0).toUpperCase() + ingredientNameValue.slice(1);
+            ingredientsArray.push(ingredientNameValue);
+			ingredientsData.push(ingredientNameValue.toLowerCase());
+			
+			//Create ingredient list item elements
+			const recipeIngredientName = createElement("span", ingredientNameValue, 'recipeIngredient', ingredientNameValue);
+			const recipeIngredientQuantity = createElement("span", ingredientQuantityValue, 'recipeQuantity', ingredientQuantityValue);
+			const recipeIngredientUnit = createElement("span", ingredientUnitValue, 'recipeUnit', ingredientUnitValue);
 
-            //Set recipe ingredient data
-            ingredientsData.push(ingredientNameValue.toLowerCase());
-            recipeArticle.dataset.recipeArticleIngredients = ingredientsData;
+			//If an ingredient does not have a quantity, set the quantity value to an empty string
+			if (ingredientQuantityValue === undefined) {
+				ingredientQuantityValue = "";
+				recipeIngredientQuantity.dataset.recipeQuantity = "undefined";
+			} else {
+				recipeIngredientName.dataset.recipeIngredientHasQuantity = "yes";
+			}
 
-            //Create ingredient list item elements
-            let recipeIngredientName = document.createElement("span");
-            let recipeIngredientQuantity = document.createElement("span");
-            let recipeIngredientUnit = document.createElement("span");
+			//If an ingredient does not have a unit, set the unit value to an empty string
+			if (ingredientUnitValue === undefined) {
+				ingredientUnitValue = "";
+				recipeIngredientUnit.dataset.recipeUnit = "undefined";
+			}
 
-            //Set datasets for ingredient list item elements
-            recipeIngredientName.dataset.recipeIngredient = ingredientNameValue;
-            recipeIngredientQuantity.dataset.recipeQuantity = ingredientQuantityValue;
-            recipeIngredientUnit.dataset.recipeUnit = ingredientUnitValue;
+			//If there is only one of a certain ingredient, use slice to make its unit singular
+			if (ingredientQuantityValue < 2){
+				let lastCharacter = ingredientUnitValue.charAt(ingredientUnitValue.length - 1);
+				if (lastCharacter === "s"){
+					let withoutLastCharacter = ingredientUnitValue.slice(0, -1);
+					ingredientUnitValue = withoutLastCharacter;
+				}
+			}
 
-            //If an ingredient does not have a quantity, set the quantity value to an empty string
-            if (ingredientQuantityValue === undefined) {
-                ingredientQuantityValue = ``;
-                recipeIngredientQuantity.dataset.recipeQuantity = "undefined";
-            } else {
-                recipeIngredientName.dataset.recipeIngredientHasQuantity = "yes";
-            }
+			//If the ingredient does not have an abbreviation as its unit, set a unique dataset for CSS
+			if (ingredientUnitValue.length > 2){
+				recipeIngredientUnit.dataset.recipeUnitAbbreviated = "no";
+			}
 
-            //If an ingredient does not have a unit, set the unit value to an empty string
-            if (ingredientUnitValue === undefined) {
-                ingredientUnitValue = ``;
-                recipeIngredientUnit.dataset.recipeUnit = "undefined";
-            }
+			//Create list elements for each ingredient
+			const recipeIngredientsListItem = createElement("li", '', 'recipeIngredientsListItem', "");
+			recipeIngredientsListItem.append(recipeIngredientName, recipeIngredientQuantity, recipeIngredientUnit);
+			recipeIngredientsList.append(recipeIngredientsListItem);
+		})
 
-            //If there is only one of a certain ingredient, use slice to make its unit singular
-            if (ingredientQuantityValue < 2){
-                let lastCharacter = ingredientUnitValue.charAt(ingredientUnitValue.length - 1);
-                if (lastCharacter === "s"){
-                    let withoutLastCharacter = ingredientUnitValue.slice(0, -1);
-                    ingredientUnitValue = withoutLastCharacter;
-                };
-            }
+		//Add additional datasets and default class to article
+        article.dataset.recipeAppliance = appliance.toLowerCase();
+		article.dataset.recipeUtensils = utensilsData;
+		article.dataset.recipeIngredients = ingredientsData;
+		article.classList.add("found");
 
-            //If the ingredient does not have an abbreviation as its unit, set a unique dataset for CSS
-            if (ingredientUnitValue.length > 2){
-                recipeIngredientUnit.dataset.recipeUnitAbbreviated = "no";
-            }
+		//Append article child elements to their parent elements
+		recipeArticleHeader.append(recipeName, clockIcon, recipeTime);
+		recipeDescriptionContainer.append(recipeDescription);
+		recipeArticleBody.append(recipeIngredientsList, recipeDescriptionContainer);
+		recipeArticleContainer.append(recipeArticleHeader, recipeArticleBody);
+		article.append(recipeArticleImage, recipeArticleContainer);
 
-            //Set text content for each ingredient name, quantity, and unit
-            recipeIngredientName.textContent = ingredientNameValue;
-            recipeIngredientQuantity.textContent = ingredientQuantityValue;
-            recipeIngredientUnit.textContent = ingredientUnitValue;
-            
-            //Create list elements for each ingredient
-            const recipeIngredientsListItem = document.createElement("li");
-            recipeIngredientsListItem.dataset.recipeIngredientsListItem = "";
+		return(article);
+	}
 
-            //Append ingredient list child elements to their parent elements
-            recipeIngredientsListItem.append(recipeIngredientName, recipeIngredientQuantity, recipeIngredientUnit);
-            recipeIngredientsList.append(recipeIngredientsListItem);
-        })
-        
-        //Append article child elements to their parent elements
-        recipeArticleHeader.append(recipeName, clockIcon, recipeTime);
-        recipeDescriptionContainer.append(recipeDescription);
-        recipeArticleBody.append(recipeIngredientsList, recipeDescriptionContainer);
-        recipeArticleContainer.append(recipeArticleHeader, recipeArticleBody);
-        recipeArticle.append(recipeArticleImage, recipeArticleContainer);
-
-        //Add .found class to articles by default
-        recipeArticle.classList.add("found");
-        return(recipeArticle);
-    }
-
-    return {
-        id, name, servings, ingredients, time, description, appliance, utensils, recipeCardDOM
-    };
+	return {
+		id, name, servings, time, description, appliance, utensilsArray, ingredientsArray, recipeCardDOM
+	};
 };
 
-export {recipes, recipeFactory};
+//Factory function to create elements
+function createElement(type, text, datasetName, datasetValue){
+	const element = document.createElement(type);
+	if(text !== ''){element.textContent = text;}
+	element.dataset[datasetName] = datasetValue;
+	return element
+}

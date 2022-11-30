@@ -26,3 +26,13 @@
         }
     }
 }
+
+[data-search-error-visible="false"] {
+    font-size: 1rem;
+    color: $color-text-black;
+    display: none;
+}
+
+[data-search-error-visible="true"]{
+    display: flex;
+}
