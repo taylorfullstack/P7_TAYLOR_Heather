@@ -1,23 +1,24 @@
-import { dropdownIngredients, dropdownAppliances, dropdownUtensils} from "../dropdown/dropdown_keyboard_navigation.js";
+import { menuAppliancesMutant, menuIngredientsMutant, menuUtensilsMutant } from "./dropdown_observer.js";
 
-const ariaExpanded = (event) => {
-    const input = event.target;
-    const menu = input.nextElementSibling.nextElementSibling.nextElementSibling;
-    input.setAttribute("aria-expanded", "true");
-    menu.setAttribute("aria-expanded", "true");
-}
+//Observe the dropdown menus for border box size changes
+//Aria expanded is set to true or false depending on whether the dropdown menu options are visible
+const dropdownResizeObserver = new ResizeObserver(entries => {
 
-const ariaNotExpanded = (event) => {
-    const input = event.target;
-    const menu = input.nextElementSibling.nextElementSibling.nextElementSibling;
-    input.setAttribute("aria-expanded", "false");
-    menu.setAttribute("aria-expanded", "false");
-}
+	entries.forEach(entry => {
+		const dropdownMenuSize = entry.borderBoxSize[0].blockSize;
+		const dropdownMenu = entry.target;
+		const dropdownInput = dropdownMenu.parentElement.firstElementChild;
 
-dropdownIngredients.addEventListener("focusin", ariaExpanded);
-dropdownAppliances.addEventListener("focusin", ariaExpanded);
-dropdownUtensils.addEventListener("focusin", ariaExpanded);
+		if(dropdownMenuSize === 0){
+			dropdownMenu.setAttribute("aria-expanded", "false");
+			dropdownInput.setAttribute("aria-expanded", "false");
+		} else {
+			dropdownMenu.setAttribute("aria-expanded", "true");
+			dropdownInput.setAttribute("aria-expanded", "true");
+		}
+	});
+});
 
-dropdownIngredients.addEventListener("focusout", ariaNotExpanded);
-dropdownAppliances.addEventListener("focusout", ariaNotExpanded);
-dropdownUtensils.addEventListener("focusout", ariaNotExpanded);
+dropdownResizeObserver.observe(menuAppliancesMutant);
+dropdownResizeObserver.observe(menuUtensilsMutant);
+dropdownResizeObserver.observe(menuIngredientsMutant);

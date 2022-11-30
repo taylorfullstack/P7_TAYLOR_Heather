@@ -1,30 +1,53 @@
-import { recipeFactory, recipes } from "./factories/recipe_factory.js"
-import { } from "./factories/dropdown_factory.js";
-import { } from "./components/dropdown/dropdown_keyboard_navigation.js";
-import { } from "./components/dropdown/dropdown_inputs.js";
-import { } from "./components/dropdown/dropdown_observer.js"
-import { } from "./components/dropdown/dropdown_aria.js";
-import { } from "./components/tag_menu/tags.js";
-import { } from "./components/tag_menu/tag_observer.js";
-import { } from "./components/recipes_output/recipe_observer.js";
+import { recipes } from "./data/recipes.js";
+import { recipeFactory} from "./factories/recipe_factory.js"
+import { applianceLabel,  utensilLabel,  ingredientLabel, createDropdownList } from "./factories/dropdown_factory.js";
 
-const recipesOutput = document.getElementById("recipesOutput");
+export const menuIngredients = document.getElementById("menuIngredients");
+export const menuAppliances = document.getElementById("menuAppliances");
+export const menuUtensils = document.getElementById("menuUtensils");
+
+export const recipesOutput = document.getElementById("recipesOutput");
+
 //Function to display all recipe cards
-const displayData = recipes => {
-    
-    recipes.forEach((recipe) => {
-        //for each recipe in the array recipes[] ...
-        const recipeModel = recipeFactory(recipe); //The value of recipeModel is the return value of recipeFactory(recipe)
-        const recipeCardDOM = recipeModel.recipeCardDOM(); //recipeCardDOM() returns the recipe's DOM
-        recipesOutput.appendChild(recipeCardDOM); //Append each recipe to the recipesOutput section
-        //console.log(recipe);
-        //console.log(recipe.time);
-        //console.log(recipe.servings);
-    });
+async function displayRecipes() {
+	const appliances = [];
+	const utensils = [];
+	const ingredients = [];
+
+	recipes.forEach((recipe) => {
+		//for each recipe in the array recipes[] ...
+		const recipeModel = recipeFactory(recipe); //The value of recipeModel is the return value of recipeFactory(recipe)
+		const recipeCardDOM = recipeModel.recipeCardDOM(); //recipeCardDOM() returns the recipe's DOM
+		recipesOutput.appendChild(recipeCardDOM); //Append each recipe to the recipesOutput section
+		
+		const recipeAppliance = recipeModel.appliance;
+		const recipeIngredientsArray = recipeModel.ingredientsArray;
+		const recipeUtensilsArray = recipeModel.utensilsArray;
+
+		appliances.push(recipeAppliance);
+		utensils.push(recipeUtensilsArray);
+		ingredients.push(recipeIngredientsArray);
+	});
+
+	return [appliances, utensils, ingredients]
+	
 }
 
-const main = () => {
-    displayData(recipes);
+async function displayDropdowns(){
+	const [appliances, utensils, ingredients] = await displayRecipes();
+
+	const allAppliances = [...new Set(appliances)];
+	const allUtensils = [...new Set(utensils.flatMap(utensil => utensil))];
+	const allIngredients = [...new Set(ingredients.flatMap(ingredient => ingredient))];
+
+	const applianceOptions = createDropdownList(allAppliances, menuAppliances, applianceLabel);
+	const utensilOptions = createDropdownList(allUtensils, menuUtensils, utensilLabel)
+	const ingredientOptions = createDropdownList(allIngredients, menuIngredients, ingredientLabel);
+
+	return {applianceOptions, utensilOptions, ingredientOptions}
 }
 
-main();
+export const main = async () => {
+	const ready = await displayDropdowns();
+	return ready
+}

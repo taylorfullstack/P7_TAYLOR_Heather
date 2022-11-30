@@ -15,13 +15,14 @@
     </header>
     <main>
       <form aria-label="Filtrer les recettes" id="form">
-        <fieldset class="searchBar" aria-label="filter par saisie de texte">
+        <fieldset id="searchBar" class="searchBar" aria-label="filter par saisie de texte">
           <label aria-hidden="false" for="searchInput">Rechercher une recette</label>
           <input id="searchInput" type="text" name="searchInput" placeholder="Rechercher une recette">
           <button type="button">
             <img src="assets/search_icon.svg" alt="recherche" width="20" height="20">
           </button>
         </fieldset>
+        <div id="searchError" data-search-error-visible="false">Veuillez saisir un mot ou une phrase.</div>
         <fieldset id="tagSection" class="tagSection" aria-label="étiquettes actives">
           <menu id="tagMenu" aria-live="polite"></menu>
         </fieldset>
@@ -32,7 +33,7 @@
                 tabindex="0"
                 type="text"
                 id="ingredientsInput"
-                data-dropdown-input="ingredients"
+                data-dropdown-input="ingredient"
                 placeholder="Rechercher un ingrédient" 
                 size="22"
                 role="combobox"
@@ -42,7 +43,7 @@
               <label for="ingredientsInput">
                 <span id="labelIngredients">Ingrédients</span>
               </label>
-              <img src="assets/arrow_down.svg" alt="">
+              <img src="assets/arrow_down.svg" width="16" height="16" alt="">
               <menu 
                 id="menuIngredients" role="listbox" class="listbox" aria-multiselectable="true"
                 aria-live="polite" aria-labelledby="labelIngredients" aria-expanded="false">
@@ -53,7 +54,7 @@
                 tabindex="0"
                 type="text"
                 id="appliancesInput"
-                data-dropdown-input="appliances"
+                data-dropdown-input="appliance"
                 placeholder="Rechercher un appareil" 
                 size="22"
                 role="combobox"
@@ -63,7 +64,7 @@
               <label for="appliancesInput">
                 <span id="labelAppliances">Appareils</span>
               </label>
-              <img src="assets/arrow_down.svg" alt="">
+              <img src="assets/arrow_down.svg" width="16" height="16" alt="">
               <menu
               id="menuAppliances" role="listbox" class="listbox" aria-multiselectable="true"
               aria-live="polite" aria-labelledby="labelAppliances" aria-expanded="false">
@@ -74,7 +75,7 @@
                 tabindex="0"
                 type="text"
                 id="utensilsInput"
-                data-dropdown-input="utensils"
+                data-dropdown-input="utensil"
                 placeholder="Rechercher un ustensile" 
                 size="22"
                 role="combobox"
@@ -84,7 +85,7 @@
               <label for="utensilsInput">
                 <span id="labelUtensils">Ustensiles</span>
               </label>
-              <img src="assets/arrow_down.svg" alt="">
+              <img src="assets/arrow_down.svg" width="16" height="16" alt="">
               <menu
                 id="menuUtensils" role="listbox" class="listbox" aria-multiselectable="true"
                 aria-live="polite" aria-labelledby="labelUtensils" aria-expanded="false">
@@ -101,6 +102,6 @@
         </p>
       </section>
     </main>
-    <script type="module" src="scripts/index.js"></script>
+    <script type="module" src="scripts/app.js"></script>
   </body>
 </html>
