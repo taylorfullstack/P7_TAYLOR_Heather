@@ -1,5 +1,5 @@
 
-import { lettersSpacesApostrophesOnly, removeAccents } from "../../helpers/text_input.js";
+import { lettersSpacesApostrophesOnly, removeAccents } from "../helpers/text_input.js";
 
 const searchInput = document.getElementById("searchInput");
 const searchError = document.getElementById("searchError");
