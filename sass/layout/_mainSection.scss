@@ -18,6 +18,12 @@
     width: 100%;
 }
 
+fieldset > legend {
+    position: absolute;
+    z-index: -9999;
+    color: transparent;
+}
+
 :where([data-recipes-section]) {  
     width: 100%;
     display: grid;
