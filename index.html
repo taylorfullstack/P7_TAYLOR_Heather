@@ -16,19 +16,26 @@
     <main>
       <form aria-label="Filtrer les recettes" id="form">
         <fieldset id="searchBar" class="searchBar" aria-label="filter par saisie de texte">
+          <legend>filter par saisie de texte</legend>
           <label aria-hidden="false" for="searchInput">Rechercher une recette</label>
           <input id="searchInput" type="text" name="searchInput" placeholder="Rechercher une recette">
-          <button type="button">
+          <button type="button" disabled aria-hidden="true">
             <img src="assets/search_icon.svg" alt="recherche" width="20" height="20">
           </button>
         </fieldset>
         <div id="searchError" data-search-error-visible="false">Veuillez saisir un mot ou une phrase.</div>
-        <fieldset id="tagSection" class="tagSection" aria-label="étiquettes actives">
-          <menu id="tagMenu" aria-live="polite"></menu>
+        <fieldset id="tagSection" class="tagSection">
+          <legend>filtrer par étiquette</legend>
+          <menu id="tagMenu" aria-live="polite" aria-label="étiquettes actives"></menu>
         </fieldset>
         <fieldset aria-label="filtrer par étiquette">
-          <menu id="dropdownMenu" class="dropdownMenu" tabindex="0">
-            <li id="dropdownIngredients" class="dropdownListItem backgroundColor--1">
+          <legend>filtrer par étiquette</legend>
+          <div id="dropdownMenu" class="dropdownMenu">
+            <div id="dropdownIngredients" class="dropdownListItem backgroundColor--1" role="combobox"
+            aria-expanded="false" aria-haspopup="listbox" aria-label="filter par ingrédient">
+              <label for="ingredientsInput">
+                <span id="labelIngredients" class="textShadow--1">Ingrédients</span>
+              </label>
               <input
                 tabindex="0"
                 type="text"
@@ -36,20 +43,19 @@
                 data-dropdown-input="ingredient"
                 placeholder="Rechercher un ingrédient" 
                 size="22"
-                role="combobox"
-                aria-expanded="false"
                 aria-controls="menuIngredients"
                 aria-autocomplete="list">
-              <label for="ingredientsInput">
-                <span id="labelIngredients">Ingrédients</span>
-              </label>
               <img src="assets/arrow_down.svg" width="16" height="16" alt="">
               <menu 
                 id="menuIngredients" role="listbox" class="listbox" aria-multiselectable="true"
                 aria-live="polite" aria-labelledby="labelIngredients" aria-expanded="false">
               </menu>
-            </li>
-            <li id="dropdownAppliances" class="dropdownListItem backgroundColor--2">
+            </div>
+            <div id="dropdownAppliances" class="dropdownListItem backgroundColor--2" role="combobox"
+            aria-expanded="false" aria-haspopup="listbox" aria-label="filter par appareil">
+              <label for="appliancesInput">
+                <span id="labelAppliances" class="textShadow--2">Appareils</span>
+              </label>
               <input
                 tabindex="0"
                 type="text"
@@ -57,20 +63,19 @@
                 data-dropdown-input="appliance"
                 placeholder="Rechercher un appareil" 
                 size="22"
-                role="combobox"
-                aria-expanded="false"
                 aria-controls="menuAppliances"
                 aria-autocomplete="list">
-              <label for="appliancesInput">
-                <span id="labelAppliances">Appareils</span>
-              </label>
               <img src="assets/arrow_down.svg" width="16" height="16" alt="">
               <menu
               id="menuAppliances" role="listbox" class="listbox" aria-multiselectable="true"
               aria-live="polite" aria-labelledby="labelAppliances" aria-expanded="false">
               </menu>
-            </li>
-            <li id="dropdownUtensils" class="dropdownListItem backgroundColor--3">
+            </div>
+            <div id="dropdownUtensils" class="dropdownListItem backgroundColor--3"  role="combobox"
+            aria-expanded="false" aria-haspopup="listbox" aria-label="filter par ustensile">
+              <label for="utensilsInput">
+                <span id="labelUtensils" class="textShadow--3">Ustensiles</span>
+              </label>
               <input
                 tabindex="0"
                 type="text"
@@ -78,20 +83,15 @@
                 data-dropdown-input="utensil"
                 placeholder="Rechercher un ustensile" 
                 size="22"
-                role="combobox"
-                aria-expanded="false"
                 aria-controls="menuUtensils"
                 aria-autocomplete="list">
-              <label for="utensilsInput">
-                <span id="labelUtensils">Ustensiles</span>
-              </label>
               <img src="assets/arrow_down.svg" width="16" height="16" alt="">
               <menu
                 id="menuUtensils" role="listbox" class="listbox" aria-multiselectable="true"
                 aria-live="polite" aria-labelledby="labelUtensils" aria-expanded="false">
               </menu>
-            </li>
-          </menu>
+            </div>
+          </div>
         </fieldset>
       </form>
       <output aria-label="Recettes filtrées" id="recipesOutput" name="recipesOutput" form="form" aria-live="polite" data-recipes-section>
