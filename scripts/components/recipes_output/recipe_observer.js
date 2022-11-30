@@ -13,9 +13,9 @@ const recipesOutputMutationObserver = new MutationObserver(_mutations => {
 	displayNoRecipes(foundList);
 
 	//Arrays to hold the data of all currently displayed recipes 
-	let allFoundRecipeIngredients = []; console.log(allFoundRecipeIngredients);
-	let allFoundRecipeUtensils = []; console.log(allFoundRecipeUtensils);
-	let allFoundRecipeAppliances = []; console.log(allFoundRecipeAppliances);
+	let allFoundRecipeIngredients = [];
+	let allFoundRecipeUtensils = [];
+	let allFoundRecipeAppliances = [];
 
 	//For every currently displayed recipe ...push its data into the appropriate array
 	for(let recipe of foundList){

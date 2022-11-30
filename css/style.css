@@ -147,6 +147,16 @@ body {
   background-color: #ED6454;
 }
 
+.textShadow--1 {
+  text-shadow: 0px 0.5px 3px black;
+}
+.textShadow--2 {
+  text-shadow: 0px 0.5px 3px #030c08;
+}
+.textShadow--3 {
+  text-shadow: 0px 0.5px 3px #0e0301;
+}
+
 .dropdownListItem {
   display: grid;
   height: 69px;
@@ -160,7 +170,7 @@ body {
   font-weight: 700;
 }
 .dropdownListItem > :is(input, label, menu) {
-  font-size: 18px;
+  font-size: 19px;
   padding: 19px;
 }
 .dropdownListItem > :is(input, label) {
@@ -180,10 +190,16 @@ body {
   display: grid;
 }
 .dropdownListItem:focus-within > input::placeholder {
-  opacity: 0.8;
+  opacity: 1;
 }
 .dropdownListItem:not(:focus-within) > input::placeholder {
   opacity: 0;
+}
+.dropdownListItem:not(:focus-within) > input {
+  opacity: 0;
+}
+.dropdownListItem:not(:focus-within) > menu {
+  display: none;
 }
 .dropdownListItem > input {
   padding-right: 30px;
@@ -200,15 +216,9 @@ body {
   font-weight: 400;
 }
 .dropdownListItem > input:where(:focus-within)::placeholder {
-  opacity: 0.8;
+  opacity: 1;
 }
-.dropdownListItem > input:where(:not(:placeholder-shown)) + label {
-  opacity: 0;
-}
-.dropdownListItem > input:where(:focus-within) + label {
-  display: none;
-}
-.dropdownListItem > input:where(:focus-within) ~ menu {
+.dropdownListItem > input:focus-within ~ menu {
   display: grid;
 }
 .dropdownListItem > input:where(:focus-within) ~ img {
@@ -218,6 +228,9 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
+}
+.dropdownListItem > label > span {
+  font-weight: 900;
 }
 .dropdownListItem > img {
   justify-self: end;
@@ -234,7 +247,6 @@ body {
   justify-items: left;
   width: inherit;
   background-color: inherit;
-  padding-right: 1.625rem;
   border-radius: 0px 0px 5px 5px;
   transform: translateY(-5px);
   z-index: 3;
@@ -253,7 +265,7 @@ body {
   cursor: pointer;
 }
 .dropdownListItem > menu > li:where(.notHidden):hover {
-  text-shadow: 0.03rem 0.03rem #FFFFFF;
+  text-shadow: 0px 0.5px 5px #000000;
 }
 .dropdownListItem > menu > li:where(.notHidden):focus {
   outline: solid 2px #FFFFFF;
@@ -395,6 +407,12 @@ header {
 :where(form) > fieldset {
   display: flex;
   width: 100%;
+}
+
+fieldset > legend {
+  position: absolute;
+  z-index: -9999;
+  color: transparent;
 }
 
 :where([data-recipes-section]) {

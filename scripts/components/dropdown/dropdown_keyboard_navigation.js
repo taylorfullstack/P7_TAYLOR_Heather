@@ -32,7 +32,7 @@ const navigateToDropdownList = (event) => {
 	if(event.key !== "ArrowDown") {
 		return;
 	}
-
+	event.preventDefault();
 	const targetedInput = event.target;
 	let menuOptions;
 
@@ -75,12 +75,14 @@ const navigateToDropdownList = (event) => {
 		}
 
 		if (event.key === "ArrowDown") {
+			event.preventDefault();
 			if (currentIndex < menuOptionsFiltered.length - 1) {
 				currentIndex = (currentIndex + 1);
 			}
 		}
     
 		if (event.key === "ArrowUp") {
+			event.preventDefault();
 			if (currentIndex > 0) {
 				currentIndex = (currentIndex - 1);
 			}

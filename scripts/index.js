@@ -40,9 +40,9 @@ async function displayDropdowns(){
 	const allUtensils = [...new Set(utensils.flatMap(utensil => utensil))];
 	const allIngredients = [...new Set(ingredients.flatMap(ingredient => ingredient))];
 
-	const applianceOptions = createDropdownList(allAppliances, menuAppliances, applianceLabel);
-	const utensilOptions = createDropdownList(allUtensils, menuUtensils, utensilLabel)
-	const ingredientOptions = createDropdownList(allIngredients, menuIngredients, ingredientLabel);
+	const applianceOptions = createDropdownList(allAppliances, menuAppliances, applianceLabel, "textShadow--2");
+	const utensilOptions = createDropdownList(allUtensils, menuUtensils, utensilLabel, "textShadow--3")
+	const ingredientOptions = createDropdownList(allIngredients, menuIngredients, ingredientLabel, "textShadow--1");
 
 	return {applianceOptions, utensilOptions, ingredientOptions}
 }

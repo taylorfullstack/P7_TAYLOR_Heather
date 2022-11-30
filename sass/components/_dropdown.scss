@@ -12,6 +12,12 @@
     &--3 {background-color: $color-3;}
 }
 
+.textShadow {
+    &--1 {text-shadow: 0px 0.5px 3px darken($color-1, 60%);}
+    &--2 {text-shadow: 0px 0.5px 3px darken($color-2, 60%);}
+    &--3 {text-shadow: 0px 0.5px 3px darken($color-3, 60%);}
+}
+
 .dropdownListItem {
     display: grid;
     height: 69px;
@@ -26,7 +32,7 @@
         font-weight: 700;
     }
     & > :is(input, label, menu) {
-        font-size: 18px;
+        font-size: 19px;
         padding: 19px;
     }
     & > :is(input, label) {
@@ -46,12 +52,19 @@
         display: grid;
     }
     &:focus-within > input::placeholder {
-        opacity: 0.8;
+        opacity: 1;
     }
     
     &:not(:focus-within) > input::placeholder {
         opacity: 0;
     }
+    &:not(:focus-within) > input {
+        opacity: 0;
+    }
+    &:not(:focus-within) > menu {
+        display: none;
+    }
+
     //Children of dropdown//
     & > input {
         padding-right: 30px;
@@ -67,15 +80,9 @@
             font-weight: 400;
         }
         &:where(:focus-within)::placeholder{
-            opacity: 0.8;
+            opacity: 1;
         }
-        &:where(:not(:placeholder-shown)) + label {
-            opacity: 0;
-        }
-        &:where(:focus-within) + label {
-            display: none;
-        }
-        &:where(:focus-within) ~ menu {
+        &:focus-within ~ menu {
             display: grid;
         }
         &:where(:focus-within) ~ img {
@@ -86,6 +93,9 @@
         display: flex;
         justify-content: left;
         align-items: center;
+        & > span {
+            font-weight: 900;
+        }
     }
     & > img {
         justify-self: end;
@@ -102,7 +112,6 @@
         justify-items: left;
         width: inherit;
         background-color: inherit;
-        padding-right: 1.625rem;
         border-radius: 0px 0px 5px 5px;
         transform: translateY(-5px);
         z-index: 3;
@@ -117,7 +126,7 @@
             background-color: inherit;
             cursor: pointer;
             &:hover {
-                text-shadow: .03rem .03rem $color-text-white;
+                text-shadow: 0px 0.5px 5px $color-text-black;
             }
             &:focus {
                 outline: solid 2px $color-text-white;
