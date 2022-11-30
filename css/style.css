@@ -12,6 +12,7 @@
 }
 
 html {
+  height: 101%;
   scroll-behavior: smooth;
 }
 
@@ -46,8 +47,14 @@ body {
   flex-direction: column;
   background-color: #E7E7E7;
   border-radius: 5px;
-  width: 380px;
+  max-width: 380px;
   height: 364px;
+}
+@media screen and (width < 873px) {
+  [data-recipe-article] {
+    width: 95vw;
+    margin: auto;
+  }
 }
 [data-recipe-article] > [data-recipe-image] {
   background-color: #C7BEBE;
@@ -61,6 +68,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+@media screen and (width < 873px) {
+  [data-recipe-article] > [data-recipe-container] {
+    gap: 1.1rem;
+    padding: 7.5px 9px;
+    min-height: 186px;
+  }
 }
 [data-recipe-article] > [data-recipe-container] [data-recipe-header] {
   display: flex;
@@ -85,28 +99,30 @@ body {
 }
 [data-recipe-article] > [data-recipe-container] [data-recipe-body] {
   display: flex;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
 [data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] {
-  width: 171px;
+  width: 50%;
   line-height: 14.4px;
   padding-left: 2px;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-ingredient] {
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-ingredient] {
   font-weight: 700;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes] {
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes] {
   font-weight: 700;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes]::after {
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes]::after {
   content: ":" " ";
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list-item] span[data-recipe-unit-abbreviated=no]::before {
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-unit-abbreviated=no]::before {
   content: " ";
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-description] {
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] div {
+  width: 50%;
+}
+[data-recipe-article] > [data-recipe-container] [data-recipe-body] div [data-recipe-description] {
   font-family: "Roboto", sans-serif;
-  width: 171px;
   line-height: 12px;
   -webkit-line-clamp: 6;
   display: -webkit-box;
@@ -131,6 +147,16 @@ body {
   background-color: #ED6454;
 }
 
+.textShadow--1 {
+  text-shadow: 0px 0.5px 3px black;
+}
+.textShadow--2 {
+  text-shadow: 0px 0.5px 3px #030c08;
+}
+.textShadow--3 {
+  text-shadow: 0px 0.5px 3px #0e0301;
+}
+
 .dropdownListItem {
   display: grid;
   height: 69px;
@@ -144,7 +170,7 @@ body {
   font-weight: 700;
 }
 .dropdownListItem > :is(input, label, menu) {
-  font-size: 18px;
+  font-size: 19px;
   padding: 19px;
 }
 .dropdownListItem > :is(input, label) {
@@ -164,10 +190,16 @@ body {
   display: grid;
 }
 .dropdownListItem:focus-within > input::placeholder {
-  opacity: 0.8;
+  opacity: 1;
 }
 .dropdownListItem:not(:focus-within) > input::placeholder {
   opacity: 0;
+}
+.dropdownListItem:not(:focus-within) > input {
+  opacity: 0;
+}
+.dropdownListItem:not(:focus-within) > menu {
+  display: none;
 }
 .dropdownListItem > input {
   padding-right: 30px;
@@ -184,15 +216,9 @@ body {
   font-weight: 400;
 }
 .dropdownListItem > input:where(:focus-within)::placeholder {
-  opacity: 0.8;
+  opacity: 1;
 }
-.dropdownListItem > input:where(:not(:placeholder-shown)) + label {
-  opacity: 0;
-}
-.dropdownListItem > input:where(:focus-within) + label {
-  display: none;
-}
-.dropdownListItem > input:where(:focus-within) ~ menu {
+.dropdownListItem > input:focus-within ~ menu {
   display: grid;
 }
 .dropdownListItem > input:where(:focus-within) ~ img {
@@ -202,6 +228,9 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
+}
+.dropdownListItem > label > span {
+  font-weight: 900;
 }
 .dropdownListItem > img {
   justify-self: end;
@@ -218,7 +247,6 @@ body {
   justify-items: left;
   width: inherit;
   background-color: inherit;
-  padding-right: 1.625rem;
   border-radius: 0px 0px 5px 5px;
   transform: translateY(-5px);
   z-index: 3;
@@ -237,7 +265,7 @@ body {
   cursor: pointer;
 }
 .dropdownListItem > menu > li:where(.notHidden):hover {
-  text-shadow: 0.03rem 0.03rem #FFFFFF;
+  text-shadow: 0px 0.5px 5px #000000;
 }
 .dropdownListItem > menu > li:where(.notHidden):focus {
   outline: solid 2px #FFFFFF;
@@ -293,6 +321,16 @@ body {
   .searchBar > button {
     width: 10%;
   }
+}
+
+[data-search-error-visible=false] {
+  font-size: 1rem;
+  color: #000000;
+  display: none;
+}
+
+[data-search-error-visible=true] {
+  display: flex;
 }
 
 [data-ingredient] {
@@ -369,6 +407,12 @@ header {
 :where(form) > fieldset {
   display: flex;
   width: 100%;
+}
+
+fieldset > legend {
+  position: absolute;
+  z-index: -9999;
+  color: transparent;
 }
 
 :where([data-recipes-section]) {
