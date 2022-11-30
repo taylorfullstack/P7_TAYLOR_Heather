@@ -7,7 +7,7 @@ export const applianceLabel = "appliance";
 export const ingredientLabel = "ingredient";
 
 //Function to create the list items for each dropdown menu
-export const createDropdownList = (array, menu, datalabel) => {
+export const createDropdownList = (array, menu, datalabel, textShadow) => {
     array.forEach(option => {
         const listItem = document.createElement("li");
         listItem.textContent = option;
@@ -15,6 +15,7 @@ export const createDropdownList = (array, menu, datalabel) => {
         listItem.addEventListener("click", createTag);
         listItem.addEventListener("keydown", selectedOption);
         listItem.classList.add("notHidden");
+        listItem.classList.add(`${textShadow}`);
         listItem.tabIndex = "-1";
         listItem.dataset[`${datalabel}`] = `${option}`.toLowerCase();
         
