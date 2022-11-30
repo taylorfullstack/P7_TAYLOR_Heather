@@ -16,6 +16,7 @@ export const createTag = (event) => {
 	const tag = document.createElement("li");
 	const tagText = document.createElement("span"); //set the text content of the tag to the text content of the selected option
 	tagText.textContent = option.textContent;
+	tagText.style.textShadow = "0px 0.5px 3px black";
 	
 	const closeTagButton = document.createElement("button");
 	const closeButtonImg = document.createElement("img");
