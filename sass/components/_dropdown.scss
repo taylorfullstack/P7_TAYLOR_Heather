@@ -129,10 +129,12 @@
                 text-shadow: 0px 0.5px 5px $color-text-black;
             }
             &:focus {
+                border-radius: 5px;
+                outline-offset: 5px;
                 outline: solid 2px $color-text-white;
             }
         }
-        & > li:where(.hidden) {
+        & > li.hidden {
             display: none;
         }
         & > li.tagged {
