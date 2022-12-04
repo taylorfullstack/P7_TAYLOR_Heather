@@ -9,6 +9,7 @@ let userTextInput;
 let words = [];
 let deletion;
 
+//Detect any deletion of text input in the search bar
 function detectDeletion(event){
 	let xKey = event.key === "x" || event.key ==="X";
 	let metaKey = event.metaKey;
@@ -16,6 +17,8 @@ function detectDeletion(event){
 	(event.key === "Backspace" || event.key === "Delete" || (ctrlKey && xKey) || (metaKey && xKey)) ? (deletion = true) : (deletion = false);
 }
 
+//Validate user input, then store valid input text in the words array
+//Trigger the elimination and/or restoration of recipes based on the search terms 
 export function searchRecipes(event) {
 	userText = event.target.value;
 	userTextInput = removeAccents(userText.toLowerCase().trim()); 
@@ -41,6 +44,7 @@ export function searchRecipes(event) {
 	}
 }
 
+//Hide recipes if they do not match the search results 
 async function hideSearchEliminatedRecipes(){
 	const updateComplete = await updateAllRecipes(recipesCollection);
 	if(updateComplete){
@@ -51,6 +55,7 @@ async function hideSearchEliminatedRecipes(){
 	}
 }
 
+//Display hidden recipes if they match the new search results
 async function displayRestoredRecipes(){
 	const updateComplete = await updateAllRecipes(recipesCollection);
 	if(updateComplete){
@@ -63,6 +68,7 @@ async function displayRestoredRecipes(){
 	}
 }
 
+//Update the class of every recipe based on the search results
 async function updateAllRecipes(collection){
 	try {
 		Array.from(collection).forEach(recipe => {
@@ -76,6 +82,7 @@ async function updateAllRecipes(collection){
 	return true;
 }
 
+//Add or remove the searchEliminated class to a single recipe based on the search results
 async function eliminateOrRestoreRecipe(recipe) {
 	const results = await searchRecipeForAllWords(recipe);
 	if(results.includes(undefined) || !results.includes(false)){
@@ -87,6 +94,7 @@ async function eliminateOrRestoreRecipe(recipe) {
 	}
 }
 
+//Search recipes based on every word in the search bar
 async function searchRecipeForAllWords(recipe) {
 	const recipeTitle = removeAccents(recipe.dataset.recipeArticle); 
 	const recipeIngredients = removeAccents(recipe.dataset.recipeIngredients);
@@ -100,6 +108,7 @@ async function searchRecipeForAllWords(recipe) {
 	return [...results];
 }
 
+//Search recipes based on an individual word or group of letters
 function searchRecipeForWord(word, recipeTitle, recipeIngredients, recipeDescription) {
 	if(words.at(0) === "") return undefined;
 	if(recipeTitle.includes(word) || recipeIngredients.includes(word) || recipeDescription.includes(word)) return true;
