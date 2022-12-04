@@ -1,39 +1,32 @@
+import { menuIngredients, menuAppliances, menuUtensils } from "../../index.js";
 import { ingredientsInput, appliancesInput, utensilsInput, ingredientsList, appliancesList, utensilsList } from "./dropdown_inputs.js";
-
-//Primary dropdown menu containing the three dropdowns
-const dropdownMenu = document.getElementById("dropdownMenu");
 
 //Each of the 3 dropdowns is an <li> with 4 children: label, input, img, & menu
 export const dropdownIngredients = document.getElementById("dropdownIngredients");
 export const dropdownAppliances = document.getElementById("dropdownAppliances");
 export const dropdownUtensils = document.getElementById("dropdownUtensils");
 
-//If the "Escape" key is pressed, restore focus to the dropdown menu
-const escapeFunction = (event) => { 
-	if(event.key !== "Escape"){
-		return;
-	} 
-	dropdownMenuFocus();
-}
-
-//Listen for the "Escape" key while the user is focused in a dropdown menu
-dropdownIngredients.addEventListener("keydown", escapeFunction);
-dropdownAppliances.addEventListener("keydown", escapeFunction);
-dropdownUtensils.addEventListener("keydown", escapeFunction);
-
-//Function to restore focus to the primary dropdown menu
-const dropdownMenuFocus = () => {
-	dropdownMenu.focus();
-}
-
 //If "ArrowDown" key is pressed by the user, while their cursor is in a dropdown input
 //...move focus to the first dropdown menu list item
 const navigateToDropdownList = (event) => {
+	const targetedInput = event.target;
+	const menu = targetedInput.nextElementSibling.nextElementSibling;
+	if(event.key === "Escape"){
+		menu.dataset.state = "closed";
+		return;
+	}
+
+	if(event.key === "Tab"){
+		menu.dataset.state = "closed";
+		return;
+	}
+
+	menu.dataset.state = "open";
+
 	if(event.key !== "ArrowDown") {
 		return;
 	}
-	event.preventDefault();
-	const targetedInput = event.target;
+
 	let menuOptions;
 
 	if(targetedInput === ingredientsInput) {
@@ -63,28 +56,33 @@ const navigateToDropdownList = (event) => {
 	//Navigate through the dropdown menu list options using the "ArrowUp" and "ArrowDown" keys
 	const navigateList = (event) => {
 
-		if(event.key === "Escape" || event.key === "Enter") {
+		if(event.key === "Enter") {
+			event.preventDefault();
+			inputFocus();
+			menu.dataset.state = "closed";
+		}
+
+		function inputFocus(){
+			const input = event.target.parentElement.previousElementSibling.previousElementSibling;
+			input.focus();
 			for (let option of menuOptionsFiltered) {
 				option.tabIndex = -1;
 			}
-			dropdownMenuFocus();
 		}
     
-		if(event.key !== "ArrowDown" && event.key !== "ArrowUp") {
-			return;
-		}
-
-		if (event.key === "ArrowDown") {
-			event.preventDefault();
-			if (currentIndex < menuOptionsFiltered.length - 1) {
-				currentIndex = (currentIndex + 1);
+		if(event.key === "ArrowDown" || event.key === "ArrowUp") {
+			if (event.key === "ArrowDown") {
+				event.preventDefault();
+				if (currentIndex < menuOptionsFiltered.length - 1) {
+					currentIndex = (currentIndex + 1);
+				}
 			}
-		}
-    
-		if (event.key === "ArrowUp") {
-			event.preventDefault();
-			if (currentIndex > 0) {
-				currentIndex = (currentIndex - 1);
+		
+			if (event.key === "ArrowUp") {
+				event.preventDefault();
+				if (currentIndex > 0) {
+					currentIndex = (currentIndex - 1);
+				}
 			}
 		}
 
@@ -95,6 +93,9 @@ const navigateToDropdownList = (event) => {
 		let listItem = menuOptionsFiltered[currentIndex]; 
 		listItem.tabIndex = 0;
 		listItem.focus();
+		if(event.key === "Escape"){
+			inputFocus();
+		}
 		listItem.tabIndex = -1;
 	}
 
