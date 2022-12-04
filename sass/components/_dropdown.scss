@@ -4,6 +4,8 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    z-index: 1;
+    max-width: 95vw;
 }
 
 .backgroundColor {
@@ -21,14 +23,17 @@
 .dropdownListItem {
     display: grid;
     height: 69px;
+    flex-basis: 170px;
+    max-width: 100%;
     border-radius: 5px;
     color: $color-text-white;
     align-items: center;
-    
+    grid-template-columns: 80% 20%;
+
     //Specific children of dropdown//
-    & > :is(input, label, img) {
-        grid-column: 1 / -1 ;
-        grid-row: 1 / -1 ;
+    & > :is(input, label) {
+        grid-column: 1/3;
+        grid-row: 1/-1;
         font-weight: 700;
     }
     & > :is(input, label, menu) {
@@ -36,41 +41,34 @@
         padding: 19px;
     }
     & > :is(input, label) {
-        width: 170px;
         height: inherit;
     }
     &:focus-within > label {
-        display: none;
+        opacity: 0;
+        z-index: -1;
     }
     &:focus-within > input {
-        width: 90%;
+        grid-column: 1/2;
     }
-    &:focus-within > img {
-        transform: rotate(180deg);
-    }
-    &:focus-within > menu {
-        display: grid;
-    }
+
     &:focus-within > input::placeholder {
         opacity: 1;
     }
-    
     &:not(:focus-within) > input::placeholder {
         opacity: 0;
     }
     &:not(:focus-within) > input {
         opacity: 0;
-    }
-    &:not(:focus-within) > menu {
-        display: none;
+        width: 100%;
+        z-index: 6;
     }
 
     //Children of dropdown//
     & > input {
-        padding-right: 30px;
         color: inherit;
         background-color: transparent;
-        z-index: 2;
+        z-index: 3;
+        padding-right: 0px;
         cursor: pointer;
         &:focus {
             cursor: text;
@@ -78,18 +76,15 @@
         &::placeholder {
             color: $color-text-white;
             font-weight: 400;
+            @include smallScreen{
+                font-size: 18px;
+            }
         }
-        &:where(:focus-within)::placeholder{
+        &:focus-within::placeholder{
             opacity: 1;
         }
-        &:focus-within ~ menu {
-            display: grid;
-        }
-        &:where(:focus-within) ~ img {
-            transform: rotate(180deg);
-        }
     }
-    & > label {
+    & > label{
         display: flex;
         justify-content: left;
         align-items: center;
@@ -97,41 +92,71 @@
             font-weight: 900;
         }
     }
-    & > img {
-        justify-self: end;
-        margin-right: 26px;
-        width: 16px;
-        background-color: transparent;
+    & > label {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        opacity: 1;
         z-index: 1;
+        & > span {
+            font-weight: 900;
+        }
+    }
+    & > .arrowButton {
+        z-index: 3;
+        grid-column: 2/3;
+        grid-row: 1/-1;
+        padding-right: 19px;
+        height: 100%;
+        display: grid;
+        margin-left: auto;
+        background-color: transparent;
         cursor: pointer;
+        & > img {
+            width: 16px;
+            align-self: center;
+            justify-self: center;
+            cursor: pointer;
+        }
     }
     & > menu {  
+        grid-column: span 2;
+        grid-row: 2;
         grid-template-columns: repeat(3, minmax(max-content, 1fr));
-        gap: 1rem 7rem;
+        gap: 1rem 3rem;
         justify-content: space-between;
         justify-items: left;
-        width: inherit;
+        width: 100%;
         background-color: inherit;
         border-radius: 0px 0px 5px 5px;
         transform: translateY(-5px);
-        z-index: 3;
-        display: none;
+        z-index: 4;
         @include smallScreen {
             grid-template-columns: 1fr;
+        }
+        @include mediumToLargeScreen {
+            grid-template-columns: repeat(2, minmax(max-content, 1fr));
         }
         &:hover {
             display: grid;
         }
+        &[data-state="closed"]{
+            display: none;
+        }
+        &[data-state="open"]{
+            display: grid;
+        }
         & > li:where(.notHidden) {
             background-color: inherit;
+            width: 100%;
             cursor: pointer;
             &:hover {
                 text-shadow: 0px 0.5px 5px $color-text-black;
             }
             &:focus {
-                border-radius: 5px;
                 outline-offset: 5px;
-                outline: solid 2px $color-text-white;
+                border-radius: 5px;
+                outline: 2px solid $color-text-white;
             }
         }
         & > li.hidden {
@@ -158,4 +183,8 @@
         menu[data-empty-visible="true"]::after {
         display: block;
     }
+}
+
+img[data-state="up"]{
+    transform: rotate(180deg);
 }
