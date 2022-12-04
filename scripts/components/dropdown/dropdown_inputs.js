@@ -8,10 +8,13 @@ const isEliminatedOrTagged = (element) => {
 	}
 }
 
-//INPUT CONSTANTS
+//Dropdown inputs and buttons
 const ingredientsInput = document.getElementById("ingredientsInput");
 const appliancesInput = document.getElementById("appliancesInput");
 const utensilsInput = document.getElementById("utensilsInput");
+const ingredientsButton = document.getElementById("ingredientsButton");
+const appliancesButton = document.getElementById("appliancesButton");
+const utensilsButton = document.getElementById("utensilsButton");
 
 //Modify the dropdown list options when a user inputs text into a dropdown input
 const dropdownSearch = (event) => {
@@ -65,7 +68,63 @@ ingredientsInput.addEventListener("input", dropdownSearch);
 appliancesInput.addEventListener("input", dropdownSearch);
 utensilsInput.addEventListener("input", dropdownSearch);
 
-//Function to check if an element has the class hidden
+//Check if an element has the class "hidden"
 const isHidden = (element) => element.classList.contains("hidden");
+
+//Show the menu when its sibling input receives focus
+function showMenuOnInputFocus(event){
+	const input = event.currentTarget;
+	const button = input.nextElementSibling;
+	const menu = button.nextElementSibling;
+	const menus = document.querySelectorAll("menu");
+	for(let menu of menus){
+		menu.dataset.state = "closed";
+	}
+	menu.dataset.state = "open";
+	input.addEventListener("focusout", hideMenuOnFocusOut);
+}
+
+//Open or close the menu when the dropdown arrow is clicked
+function toggleMenuOnButtonClick(event){
+	const combobox = event.currentTarget.parentElement;
+	const label = combobox.firstElementChild;
+	const input = label.nextElementSibling;
+	const menu = combobox.lastElementChild;
+	const menustate = menu.dataset.state;
+	if(menustate === "closed"){
+		menu.dataset.state = "open";
+		menu.addEventListener("click", inputFocusOnMenuClick);
+		input.focus();
+	}
+	if(menustate === "open"){
+		menu.dataset.state = "closed";
+	}
+}
+
+//Close the menu when the dropdown loses focus
+function hideMenuOnFocusOut(event){
+	const input = event.currentTarget;
+	const relatedTarget = event.relatedTarget;
+	if(relatedTarget === null){
+		const menu = input.nextElementSibling.nextElementSibling;
+		menu.dataset.state = "closed";
+	}
+	input.removeEventListener("focusout", hideMenuOnFocusOut);
+}
+
+//Move focus to the input if its sibling menu is clicked
+function inputFocusOnMenuClick(event){
+	const menu = event.currentTarget;
+	const input = menu.previousElementSibling.previousElementSibling;
+	input.focus();
+}
+
+ingredientsInput.addEventListener("focus", showMenuOnInputFocus);
+appliancesInput.addEventListener("focus", showMenuOnInputFocus);
+utensilsInput.addEventListener("focus", showMenuOnInputFocus);
+
+ingredientsButton.addEventListener("click", toggleMenuOnButtonClick);
+appliancesButton.addEventListener("click", toggleMenuOnButtonClick);
+utensilsButton.addEventListener("click", toggleMenuOnButtonClick);
 
 export {appliancesList, utensilsList, ingredientsList, ingredientsInput, appliancesInput, utensilsInput};

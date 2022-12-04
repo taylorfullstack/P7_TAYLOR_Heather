@@ -4,18 +4,21 @@
     display: flex;
     flex-direction: column;
     padding-block: 2rem;
-    padding-inline: clamp(1vw, 3vw, 4vw);
+    padding-inline: 2rem;
     gap: 1rem;
 }
 
 :where(form) {
     display: grid;
     gap: 1rem;
+    width: 95vw;
+    align-self: center;
 }
 
 :where(form) > fieldset {
     display: flex;
     width: 100%;
+    align-self: center;
 }
 
 fieldset > legend {
@@ -25,7 +28,8 @@ fieldset > legend {
 }
 
 :where([data-recipes-section]) {  
-    width: 100%;
+    width: 95vw;
+    align-self: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, 380px);
     justify-content: space-between;
