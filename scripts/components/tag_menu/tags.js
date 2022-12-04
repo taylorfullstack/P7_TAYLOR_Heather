@@ -53,4 +53,5 @@ const createTagDataAndClearInput = (option, typeOfOption, tag) => {
 
 	const associatedInput = document.querySelector("[data-dropdown-input=\"" +typeOfOption+ "\"]");
 	[`${associatedInput}`].value = "";
+	associatedInput.focus();
 }
