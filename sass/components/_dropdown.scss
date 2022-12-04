@@ -130,7 +130,7 @@
         background-color: inherit;
         border-radius: 0px 0px 5px 5px;
         transform: translateY(-5px);
-        z-index: 4;
+        
         @include smallScreen {
             grid-template-columns: 1fr;
         }
@@ -145,6 +145,7 @@
         }
         &[data-state="open"]{
             display: grid;
+            z-index: 10;
         }
         & > li:where(.notHidden) {
             background-color: inherit;
