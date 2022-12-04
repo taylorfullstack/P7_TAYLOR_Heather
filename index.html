@@ -45,10 +45,12 @@
                 size="22"
                 aria-controls="menuIngredients"
                 aria-autocomplete="list">
-              <img src="assets/arrow_down.svg" width="16" height="16" alt="">
+              <button id="ingredientsButton" class="arrowButton" type="button" aria-label="basculer la boîte de liste" aria-controls="menuIngredients" tabindex="-1">
+                <img src="assets/arrow_down.svg" width="16" height="16" alt="" data-state="down">
+              </button>
               <menu 
                 id="menuIngredients" role="listbox" class="listbox" aria-multiselectable="true"
-                aria-live="polite" aria-labelledby="labelIngredients" aria-expanded="false">
+                aria-live="polite" aria-labelledby="labelIngredients" aria-expanded="false" data-state="closed">
               </menu>
             </div>
             <div id="dropdownAppliances" class="dropdownListItem backgroundColor--2" role="combobox"
@@ -65,10 +67,12 @@
                 size="22"
                 aria-controls="menuAppliances"
                 aria-autocomplete="list">
-              <img src="assets/arrow_down.svg" width="16" height="16" alt="">
+              <button id="appliancesButton" class="arrowButton" type="button" aria-label="basculer la boîte de liste" aria-controls="menuAppliances" tabindex="-1">
+                <img src="assets/arrow_down.svg" width="16" height="16" alt="" data-state="down">
+              </button>
               <menu
               id="menuAppliances" role="listbox" class="listbox" aria-multiselectable="true"
-              aria-live="polite" aria-labelledby="labelAppliances" aria-expanded="false">
+              aria-live="polite" aria-labelledby="labelAppliances" aria-expanded="false" data-state="closed">
               </menu>
             </div>
             <div id="dropdownUtensils" class="dropdownListItem backgroundColor--3"  role="combobox"
@@ -85,10 +89,12 @@
                 size="22"
                 aria-controls="menuUtensils"
                 aria-autocomplete="list">
-              <img src="assets/arrow_down.svg" width="16" height="16" alt="">
+              <button id="utensilsButton" class="arrowButton" type="button" aria-label="basculer la boîte de liste" aria-controls="menuUtensils" tabindex="-1">
+                <img src="assets/arrow_down.svg" width="16" height="16" alt="" data-state="down">
+              </button>
               <menu
                 id="menuUtensils" role="listbox" class="listbox" aria-multiselectable="true"
-                aria-live="polite" aria-labelledby="labelUtensils" aria-expanded="false">
+                aria-live="polite" aria-labelledby="labelUtensils" aria-expanded="false" data-state="closed">
               </menu>
             </div>
           </div>
