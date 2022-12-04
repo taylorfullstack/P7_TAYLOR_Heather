@@ -135,6 +135,8 @@ body {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  z-index: 1;
+  max-width: 95vw;
 }
 
 .backgroundColor--1 {
@@ -160,12 +162,15 @@ body {
 .dropdownListItem {
   display: grid;
   height: 69px;
+  flex-basis: 170px;
+  max-width: 100%;
   border-radius: 5px;
   color: #FFFFFF;
   align-items: center;
+  grid-template-columns: 80% 20%;
 }
-.dropdownListItem > :is(input, label, img) {
-  grid-column: 1/-1;
+.dropdownListItem > :is(input, label) {
+  grid-column: 1/3;
   grid-row: 1/-1;
   font-weight: 700;
 }
@@ -174,20 +179,14 @@ body {
   padding: 19px;
 }
 .dropdownListItem > :is(input, label) {
-  width: 170px;
   height: inherit;
 }
 .dropdownListItem:focus-within > label {
-  display: none;
+  opacity: 0;
+  z-index: -1;
 }
 .dropdownListItem:focus-within > input {
-  width: 90%;
-}
-.dropdownListItem:focus-within > img {
-  transform: rotate(180deg);
-}
-.dropdownListItem:focus-within > menu {
-  display: grid;
+  grid-column: 1/2;
 }
 .dropdownListItem:focus-within > input::placeholder {
   opacity: 1;
@@ -197,15 +196,14 @@ body {
 }
 .dropdownListItem:not(:focus-within) > input {
   opacity: 0;
-}
-.dropdownListItem:not(:focus-within) > menu {
-  display: none;
+  width: 100%;
+  z-index: 6;
 }
 .dropdownListItem > input {
-  padding-right: 30px;
   color: inherit;
   background-color: transparent;
-  z-index: 2;
+  z-index: 3;
+  padding-right: 0px;
   cursor: pointer;
 }
 .dropdownListItem > input:focus {
@@ -215,14 +213,13 @@ body {
   color: #FFFFFF;
   font-weight: 400;
 }
-.dropdownListItem > input:where(:focus-within)::placeholder {
+@media screen and (width < 873px) {
+  .dropdownListItem > input::placeholder {
+    font-size: 18px;
+  }
+}
+.dropdownListItem > input:focus-within::placeholder {
   opacity: 1;
-}
-.dropdownListItem > input:focus-within ~ menu {
-  display: grid;
-}
-.dropdownListItem > input:where(:focus-within) ~ img {
-  transform: rotate(180deg);
 }
 .dropdownListItem > label {
   display: flex;
@@ -232,45 +229,79 @@ body {
 .dropdownListItem > label > span {
   font-weight: 900;
 }
-.dropdownListItem > img {
-  justify-self: end;
-  margin-right: 26px;
-  width: 16px;
-  background-color: transparent;
+.dropdownListItem > label {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  opacity: 1;
   z-index: 1;
+}
+.dropdownListItem > label > span {
+  font-weight: 900;
+}
+.dropdownListItem > .arrowButton {
+  z-index: 3;
+  grid-column: 2/3;
+  grid-row: 1/-1;
+  padding-right: 19px;
+  height: 100%;
+  display: grid;
+  margin-left: auto;
+  background-color: transparent;
+  cursor: pointer;
+}
+.dropdownListItem > .arrowButton > img {
+  width: 16px;
+  align-self: center;
+  justify-self: center;
   cursor: pointer;
 }
 .dropdownListItem > menu {
+  grid-column: span 2;
+  grid-row: 2;
   grid-template-columns: repeat(3, minmax(max-content, 1fr));
-  gap: 1rem 7rem;
+  gap: 1rem 3rem;
   justify-content: space-between;
   justify-items: left;
-  width: inherit;
+  width: 100%;
   background-color: inherit;
   border-radius: 0px 0px 5px 5px;
   transform: translateY(-5px);
-  z-index: 3;
-  display: none;
 }
 @media screen and (width < 873px) {
   .dropdownListItem > menu {
     grid-template-columns: 1fr;
   }
 }
+@media screen and (873px <= width < 1285px) {
+  .dropdownListItem > menu {
+    grid-template-columns: repeat(2, minmax(max-content, 1fr));
+  }
+}
 .dropdownListItem > menu:hover {
   display: grid;
 }
+.dropdownListItem > menu[data-state=closed] {
+  display: none;
+}
+.dropdownListItem > menu[data-state=open] {
+  display: grid;
+  z-index: 10;
+}
 .dropdownListItem > menu > li:where(.notHidden) {
   background-color: inherit;
+  width: 100%;
   cursor: pointer;
 }
 .dropdownListItem > menu > li:where(.notHidden):hover {
   text-shadow: 0px 0.5px 5px #000000;
 }
 .dropdownListItem > menu > li:where(.notHidden):focus {
-  outline: solid 2px #FFFFFF;
+  outline-offset: 5px;
+  border-radius: 5px;
+  outline: 2px solid #FFFFFF;
 }
-.dropdownListItem > menu > li:where(.hidden) {
+.dropdownListItem > menu > li.hidden {
   display: none;
 }
 .dropdownListItem > menu > li.tagged {
@@ -292,6 +323,10 @@ body {
 .dropdownListItem > menu[data-error-visible=true]::before,
 .dropdownListItem menu[data-empty-visible=true]::after {
   display: block;
+}
+
+img[data-state=up] {
+  transform: rotate(180deg);
 }
 
 .searchBar > :is(input, button) {
@@ -395,18 +430,21 @@ header {
   display: flex;
   flex-direction: column;
   padding-block: 2rem;
-  padding-inline: 3vw;
+  padding-inline: 2rem;
   gap: 1rem;
 }
 
 :where(form) {
   display: grid;
   gap: 1rem;
+  width: 95vw;
+  align-self: center;
 }
 
 :where(form) > fieldset {
   display: flex;
   width: 100%;
+  align-self: center;
 }
 
 fieldset > legend {
@@ -416,7 +454,8 @@ fieldset > legend {
 }
 
 :where([data-recipes-section]) {
-  width: 100%;
+  width: 95vw;
+  align-self: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, 380px);
   justify-content: space-between;
