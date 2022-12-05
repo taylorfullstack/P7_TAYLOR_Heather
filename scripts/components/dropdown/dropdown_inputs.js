@@ -105,7 +105,7 @@ function toggleMenuOnButtonClick(event){
 function hideMenuOnFocusOut(event){
 	const input = event.currentTarget;
 	const relatedTarget = event.relatedTarget;
-	if(relatedTarget === null){
+	if(relatedTarget === null || relatedTarget.id === "searchInput"){
 		const menu = input.nextElementSibling.nextElementSibling;
 		menu.dataset.state = "closed";
 	}
