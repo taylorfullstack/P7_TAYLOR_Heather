@@ -11,6 +11,12 @@ export const dropdownUtensils = document.getElementById("dropdownUtensils");
 const navigateToDropdownList = (event) => {
 	const targetedInput = event.target;
 	const menu = targetedInput.nextElementSibling.nextElementSibling;
+
+	if(event.key === "Enter") {
+		event.preventDefault();
+		return;
+	}
+
 	if(event.key === "Escape"){
 		menu.dataset.state = "closed";
 		return;

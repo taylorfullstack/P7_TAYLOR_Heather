@@ -11,6 +11,11 @@ let deletion;
 
 //Detect any deletion of text input in the search bar
 function detectDeletion(event){
+	if(event.key === "Enter"){
+		event.preventDefault();
+		return;
+	}
+
 	let xKey = event.key === "x" || event.key ==="X";
 	let metaKey = event.metaKey;
 	let ctrlKey = event.ctrlKey;
