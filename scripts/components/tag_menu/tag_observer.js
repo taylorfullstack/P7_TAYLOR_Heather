@@ -44,8 +44,8 @@ export const tagMutationObserver = new MutationObserver(mutations => {
 		//If a tag is REMOVED, update the visibile RECIPES
 		if(mutation.removedNodes.length) {
 			const allTags = async () => {
-				let allTagsTogether = []; 
-				let allTags = document.querySelectorAll("[data-tag]");
+				const allTagsTogether = [];
+				const allTags = document.querySelectorAll("[data-tag]");
 				for(let tag of allTags){
 					allTagsTogether.push(tag.textContent.toLowerCase());
 				}
@@ -60,16 +60,6 @@ export const tagMutationObserver = new MutationObserver(mutations => {
 tagMutationObserver.observe(tagMenuMutant, {
 	childList: true
 })
-
-const allTagMenuTagsPresentInRecipeData = async (tags, allRecipeTags) => {
-	for (let i = 0; i < tags.length; i++){
-		if (allRecipeTags.indexOf(tags[i]) === -1) {
-			return false;
-		} else {
-			return true;
-		}   
-	}
-}
 
 async function revealHiddenRecipes(allTags){
 	const tags = await allTags();
@@ -86,10 +76,14 @@ async function revealHiddenRecipes(allTags){
     
 	//For every hidden recipe
 	//If every single tag in the updated tagMenu is part of the recipe, display the recipe
+	
 	for(let recipe of recipesOutputCollection){
 		const allRecipeTags = await recipeData(recipe);
-		const result = await allTagMenuTagsPresentInRecipeData(tags, allRecipeTags);
-		if (result === true) {
+		const allTagMenuTagsPresentInRecipeData = tags.every(element => {
+			return allRecipeTags.includes(element);
+		});
+
+		if (allTagMenuTagsPresentInRecipeData === true) {
 			recipe.classList.remove("tagEliminated");
 			if(recipe.classList.contains("searchEliminated")){
 				continue;
