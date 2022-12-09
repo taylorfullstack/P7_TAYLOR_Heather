@@ -10,39 +10,36 @@ export const recipesOutput = document.getElementById("recipesOutput");
 
 //Function to display all recipe cards
 async function displayRecipes() {
-	const appliances = [];
-	const utensils = [];
-	const ingredients = [];
+	const allAppliances = [];
+	const allUtensils = [];
+	const allIngredients = [];
 
 	recipes.forEach((recipe) => {
 		//for each recipe in the array recipes[] ...
-		const recipeModel = recipeFactory(recipe); //The value of recipeModel is the return value of recipeFactory(recipe)
+		const recipeModel = recipeFactory(recipe);
 		const recipeCardDOM = recipeModel.recipeCardDOM(); //recipeCardDOM() returns the recipe's DOM
-		recipesOutput.appendChild(recipeCardDOM); //Append each recipe to the recipesOutput section
+		const recipeData = recipeCardDOM.searchData; //recipeData is all of the recipe data that is used in the search functionalities
+		recipesOutput.appendChild(recipeCardDOM.article); //Append each recipe to the recipesOutput section
 		
-		const recipeAppliance = recipeModel.appliance;
-		const recipeIngredientsArray = recipeModel.ingredientsArray;
-		const recipeUtensilsArray = recipeModel.utensilsArray;
-
-		appliances.push(recipeAppliance);
-		utensils.push(recipeUtensilsArray);
-		ingredients.push(recipeIngredientsArray);
+		allAppliances.push(recipeData.appliance);
+		allUtensils.push(recipeData.utensils);
+		allIngredients.push(recipeData.ingredients);
 	});
 
-	return [appliances, utensils, ingredients]
+	return [allAppliances, allUtensils, allIngredients]
 	
 }
 
 async function displayDropdowns(){
-	const [appliances, utensils, ingredients] = await displayRecipes();
+	const [allAppliances, allUtensils, allIngredients] = await displayRecipes();
 
-	const allAppliances = [...new Set(appliances)];
-	const allUtensils = [...new Set(utensils.flatMap(utensil => utensil))];
-	const allIngredients = [...new Set(ingredients.flatMap(ingredient => ingredient))];
+	const dropdownAppliances = [...new Set(allAppliances)];
+	const dropdownUtensils = [...new Set(allUtensils.flatMap(utensil => utensil))];
+	const dropdownIngredients = [...new Set(allIngredients.flatMap(ingredient => ingredient))];
 
-	const applianceOptions = createDropdownList(allAppliances, menuAppliances, applianceLabel, "textShadow--2");
-	const utensilOptions = createDropdownList(allUtensils, menuUtensils, utensilLabel, "textShadow--3")
-	const ingredientOptions = createDropdownList(allIngredients, menuIngredients, ingredientLabel, "textShadow--1");
+	const applianceOptions = createDropdownList(dropdownAppliances, menuAppliances, applianceLabel, "textShadow--2");
+	const utensilOptions = createDropdownList(dropdownUtensils, menuUtensils, utensilLabel, "textShadow--3")
+	const ingredientOptions = createDropdownList(dropdownIngredients, menuIngredients, ingredientLabel, "textShadow--1");
 
 	return {applianceOptions, utensilOptions, ingredientOptions}
 }
