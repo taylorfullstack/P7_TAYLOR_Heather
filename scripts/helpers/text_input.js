@@ -12,3 +12,13 @@ export const lettersSpacesApostrophesOnly = (userTextInput) => {
 		return false;
 	}
 }
+
+const searchError = document.getElementById("searchError");
+export function validateInput(userInput){
+	userInput = removeAccents((userInput).toLowerCase().trim());
+	if(lettersSpacesApostrophesOnly(userInput) === false && (userInput !== "")){
+		searchError.dataset.searchErrorVisible = "true";
+		return;
+	}
+	searchError.dataset.searchErrorVisible = "false";
+}
