@@ -11,9 +11,9 @@ Les petits plats est un site de recettes de cuisine.
 
 [La description du cas d’utilisation de recherche](https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P6+Algorithms/Cas+d%E2%80%99utilisation+%2303+Filtrer+les+recettes+dans+l%E2%80%99interface+utilisateur.pdf)
 
-[Les benchmarks des deux versions d'algorithme de recherche](https://jsben.ch/bqzMg)
+[Les benchmarks des deux versions d'algorithme de recherche](https://jsben.ch/E0wl2)
 
-[La fiche d'investigation](https://acrobat.adobe.com/link/track?uri=urn:aaid:scds:US:060a6cc6-1c83-3240-a544-840d8714fe62)
+[La fiche d'investigation](https://acrobat.adobe.com/link/track?uri=urn:aaid:scds:US:b8d1c6be-0c5d-33e5-93c0-3b52f4c085f0)
 
 ## Installation
 
