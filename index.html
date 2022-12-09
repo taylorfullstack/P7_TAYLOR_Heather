@@ -25,8 +25,8 @@
         </fieldset>
         <div id="searchError" data-search-error-visible="false">Veuillez saisir un mot ou une phrase.</div>
         <fieldset id="tagSection" class="tagSection">
-          <legend>filtrer par étiquette</legend>
-          <menu id="tagMenu" aria-live="polite" aria-label="étiquettes actives"></menu>
+          <legend>étiquettes actives</legend>
+          <menu id="tagMenu" aria-live="polite"></menu>
         </fieldset>
         <fieldset aria-label="filtrer par étiquette">
           <legend>filtrer par étiquette</legend>
@@ -100,12 +100,10 @@
           </div>
         </fieldset>
       </form>
-      <output aria-label="Recettes filtrées" id="recipesOutput" name="recipesOutput" form="form" aria-live="polite" data-recipes-section>
-      </output>
+      <section aria-label="Recettes filtrées" id="recipesOutput" aria-live="polite" data-recipes-section>
+      </section>
       <div aria-live="polite" id="noRecipes" data-results="some">
-        <p>Aucune recette ne correspond à votre critère… vous pouvez
-          chercher « tarte aux pommes », « poisson », etc.
-        </p>
+        <p>Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>
       </div>
     </main>
     <script type="module" src="scripts/app.js"></script>
