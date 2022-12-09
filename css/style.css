@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
@@ -56,12 +55,14 @@ body {
     margin: auto;
   }
 }
-[data-recipe-article] > [data-recipe-image] {
+[data-recipe-article] > :where(.recipe__image) {
   background-color: #C7BEBE;
   border-radius: 5px 5px 0px 0px;
   height: 178px;
+  display: grid;
+  place-items: center;
 }
-[data-recipe-article] > [data-recipe-container] {
+[data-recipe-article] > :where(.recipe__container) {
   height: 186px;
   font-size: 12px;
   padding: 15px 18px;
@@ -70,58 +71,49 @@ body {
   gap: 0.5rem;
 }
 @media screen and (width < 873px) {
-  [data-recipe-article] > [data-recipe-container] {
+  [data-recipe-article] > :where(.recipe__container) {
     gap: 1.1rem;
     padding: 7.5px 9px;
     min-height: 186px;
   }
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-header] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__header) {
   display: flex;
   justify-content: flex-end;
   height: 45px;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-header] [data-recipe-name] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__header) > :where(h2[itemprop=name]) {
   font-weight: 400;
   font-size: 18px;
   padding-left: 2px;
   margin-right: auto;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-header] img {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__header) > :where(img) {
   align-self: start;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-header] [data-recipe-time] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__header) > :where(time) {
   font-weight: 700;
   font-size: 18px;
   padding: 0px 2px 0px 7px;
   white-space: nowrap;
   align-self: start;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__body) {
   display: flex;
   gap: 0.5rem;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__body) > :where(.ingredientsList) {
   width: 50%;
   line-height: 14.4px;
   padding-left: 2px;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-ingredient] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__body) > :where(.ingredientsList) > :where(.ingredientsListItem) span[data-recipe-ingredient] {
   font-weight: 700;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes] {
-  font-weight: 700;
-}
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-ingredient-has-quantity=yes]::after {
-  content: ":" " ";
-}
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] [data-recipe-ingredients-list] [data-recipe-ingredients-list-item] span[data-recipe-unit-abbreviated=no]::before {
-  content: " ";
-}
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] div {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__body) > :where(div) {
   width: 50%;
 }
-[data-recipe-article] > [data-recipe-container] [data-recipe-body] div [data-recipe-description] {
+[data-recipe-article] > :where(.recipe__container) > :where(.recipe__body) > :where(div) > :where(p[itemprop=recipeInstructions]) {
   font-family: "Roboto", sans-serif;
   line-height: 12px;
   -webkit-line-clamp: 6;
