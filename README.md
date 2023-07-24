@@ -22,7 +22,7 @@ Les petits plats est un site de recettes de cuisine.
 Clonez la source localement
 
 ```sh
-$ git clone https://github.com/htaylor91/P7_TAYLOR_Heather.git
+$ git clone https://github.com/taylorfullstack/P7_TAYLOR_Heather.git
 $ cd P7_TAYLOR_Heather
 ```
 
