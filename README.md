@@ -5,7 +5,7 @@
 
 Les petits plats est un site de recettes de cuisine.
 
-[Les petits plats GitHub Page](https://htaylor91.github.io/P7_TAYLOR_Heather/)
+[Les petits plats GitHub Page](https://taylorfullstack.github.io/P7_TAYLOR_Heather/)
 
 [La maquette sur Figma](https://www.figma.com/file/xqeE1ZKlHUWi2Efo8r73NK)
 
